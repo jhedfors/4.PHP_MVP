@@ -1,0 +1,29 @@
+*{
+}
+.timeLabel{
+  border: 1px solid black;
+  height: auto;
+  width: 200px;
+  padding: 5px;
+  margin:auto;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.time{
+  border: 1px solid black;
+  height: auto;
+  width: 300px;
+  padding: 10px;
+  margin:auto;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.demoItems{
+  border: 1px solid black;
+  height: auto;
+  width: 100px;
+  padding: 20px;
+  margin:auto;
+  margin-bottom: 10px;
+  text-align: center;
+}
