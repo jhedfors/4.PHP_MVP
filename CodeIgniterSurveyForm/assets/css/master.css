@@ -1,0 +1,29 @@
+*{
+  margin: 0px;
+  padding: 0px;
+
+}
+
+form{
+  width: 350px;
+  border: 1px solid black;
+  margin: 20px;
+  padding: 20px;
+}
+
+label {
+  width: 150px;
+  display: inline-block;
+}
+
+input[type="text"], select{
+  width: 150px;
+  border: 1px solid black;
+}
+
+input[type="text"]{
+  margin-left: 3px;
+}
+textarea{
+  border: 1px solid black;
+}
