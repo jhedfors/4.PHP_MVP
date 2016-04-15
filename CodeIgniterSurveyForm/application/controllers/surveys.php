@@ -34,7 +34,7 @@ class Surveys extends CI_Controller {
 		$this->load->view('result', ["counter" => $counter,"name" => $name, "dojo_location" => $dojo_location, "favorite_language" => $favorite_language, "comments" => $comments]);
 	}
 	public function result(){
-		redirect('result');
+		redirect('/');
 
 	}
 	public function logout() {
