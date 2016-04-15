@@ -3,17 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title>Result</title>
+    <link rel="stylesheet" href="/assets/css/master.css">
   </head>
   <body>
-    <h1>Result</h1>
-		  <?=
-      $counter;
-      $name;
+    <div class="counterbox">
+      <p>
+        Thanks for submitting this form! you have submitted this form <?= $counter ?> times now.
+      </p>
+    </div>
+    <div class="summary">
+      <h4 class="summary_title">
+        Submitted Information
+      </h4>
+      <p><label>Name:</label><?= $name ?></p>
+      <p><label>Dojo Location:</label><?= $dojo_location ?></p>
+      <p><label>Favorite Language:</label><?= $favorite_language ?></p>
+      <p><label>Comments:</label><?= $comments ?></p>
 
-      //  $this->session->userdata('counter');
 
-      ?>
+      </form>
 
-
+      </div>
+    </div>
   </body>
 </html>

@@ -1,7 +1,7 @@
 *{
   margin: 0px;
   padding: 0px;
-
+  /*background-color: red;*/
 }
 
 form{
@@ -26,4 +26,28 @@ input[type="text"]{
 }
 textarea{
   border: 1px solid black;
+}
+
+div.counterbox{
+  background-color: lightgreen;
+  border: 1px solid black;
+  width: 350px;
+  margin: 20px;
+  padding: 5px;
+}
+
+div.summary{
+  border: 1px solid black;
+  width: 350px;
+  height: auto;
+  margin: 20px;
+  padding: 10px;
+}
+
+h4.summary_title{
+  text-decoration: underline;
+}
+
+.summary p{
+  margin-left: 10px;
 }

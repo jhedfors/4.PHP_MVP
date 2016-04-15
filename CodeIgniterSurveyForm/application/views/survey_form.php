@@ -5,7 +5,7 @@
 <html>
 <head>
  <title>Survey Form</title>
- <link rel="stylesheet" href="assets/css/master.css">
+ <link rel="stylesheet" href="/assets/css/master.css">
 </head>
 <body>
   <form class="survey" action="/surveys/process_form" method="post">
