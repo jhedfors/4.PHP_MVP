@@ -15,10 +15,15 @@
       <h4 class="summary_title">
         Submitted Information
       </h4>
+
+      <form class="return" action="/" method="post">
       <p><label>Name:</label><?= $name ?></p>
       <p><label>Dojo Location:</label><?= $dojo_location ?></p>
       <p><label>Favorite Language:</label><?= $favorite_language ?></p>
       <p><label>Comments:</label><?= $comments ?></p>
+
+      <input type="submit" value="Go Back">
+    </form>
 
 
       </form>

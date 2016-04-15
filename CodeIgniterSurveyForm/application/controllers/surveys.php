@@ -2,6 +2,8 @@
 
 session_start();
 
+
+
 class Surveys extends CI_Controller {
 
 	public function index()
@@ -11,6 +13,10 @@ class Surveys extends CI_Controller {
 
 	public function process_form(){
 		//our counter of times form is processed
+
+		// reset counter
+		//  $this->session->set_userdata('counter',1);
+
 		if($this->session->userdata('counter')){
 			$counter = $this->session->userdata('counter');
 			$this->session->set_userdata('counter', $counter+1);
@@ -26,15 +32,15 @@ class Surveys extends CI_Controller {
 
 		//set variables
 		$this->load->view('result', ["counter" => $counter,"name" => $name, "dojo_location" => $dojo_location, "favorite_language" => $favorite_language, "comments" => $comments]);
-
-		// //load result
-		// $this->load->view('result');
-
 	}
 	public function result(){
 		redirect('result');
-		// die('here');
+
 	}
+	public function logout() {
+	        $this->session->sess_destroy();
+	        redirect('main');
+	    }
 
 
 }
