@@ -1,0 +1,23 @@
+* {
+	margin: 0%;
+	padding: 0px;
+}
+#title {
+	width: 50%;
+	margin: 3% auto;
+	font-size: 1.5rem;
+	color: blue;
+	font-weight: bold;
+	text-align: center;
+	border: 1px solid black;
+}
+#date {
+	width: 50%;
+	margin: 3% auto;
+	font-size: 2rem;
+	color: blue;
+	font-weight: bold;
+	text-align: center;
+	border: 1px solid black;
+	padding: 20px;
+}
