@@ -10,14 +10,14 @@
    <body>
      <div class="main">
        <p>
-         Random Word (attempt #X)
+         Random Word (attempt #<?=$counter ?>)
        </p>
        <div class="result">
          <p>
-           xxxxx
+           <?=$random ?>
          </p>
        </div>
-       <form class="" action="random_word/randomize" method="post">
+       <form class="" action="/Random_word" method="post">
          <input type="submit" name="name" value="Generate">
 
        </form>
