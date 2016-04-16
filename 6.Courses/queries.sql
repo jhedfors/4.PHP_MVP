@@ -12,7 +12,9 @@ INSERT INTO courses (name, description, created_at, modified_at) values('PHP', '
 
 -- remove;
 
-DELETE FROM courses where id=17;
+DELETE FROM courses where id=17;	
+
+
 
     
 
