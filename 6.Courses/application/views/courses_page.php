@@ -34,6 +34,7 @@
           </th>
         </tr>
         <?php
+
           foreach ($courses as $course) {
             echo "<tr><td>{$course['name']}</td>";
             echo "<td>{$course['description']}</td>";
@@ -42,10 +43,7 @@
         ?>
 
           <td>
-            <form action="Courses/delete" method="post">
-              <input type="submit" value="Delete">
-
-            </form>
+            <a href="/Courses/display/<?=$course['id']?>">Delete</a>
 
           </td></tr>
         <?php
