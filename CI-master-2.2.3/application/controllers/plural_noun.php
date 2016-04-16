@@ -3,7 +3,7 @@
 class Plural_noun extends CI_Controller {
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('singular_noun_view');
 	}
 }
 	/**
