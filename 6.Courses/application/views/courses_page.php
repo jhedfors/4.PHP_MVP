@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Add a student to all bootcamp courses</title>
+    <title>Add a bootcamp course</title>
   </head>
   <link rel="stylesheet" href="/assets/css/master.css">
   <body>
@@ -20,39 +20,25 @@
       <h3>Courses</h3>
       <table>
         <tr>
-          <th>
-            Course Name
-          </th>
-          <th>
-            Description
-          </th>
-          <th>
-            Date Added
-          </th>
-          <th>
-            Actions
-          </th>
+          <th>Course Name</th>
+          <th>Description</th>
+          <th>Date Added</th>
+          <th>Actions</th>
         </tr>
         <?php
-
           foreach ($courses as $course) {
             echo "<tr><td>{$course['name']}</td>";
             echo "<td>{$course['description']}</td>";
             echo "<td>{$course['created_at']}</td>";
-
         ?>
-
           <td>
+            <!--the course id is passed in the URL path to be interpreted in the routes.php -->
             <a href="/Courses/display/<?=$course['id']?>">Delete</a>
-
           </td></tr>
         <?php
           }
         ?>
       </table>
-
     </div>
-
-
   </body>
 </html>
