@@ -1,4 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+$route['default_controller'] = "welcome";
+$route['404_override'] = '';
+
+
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -37,10 +42,6 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-
-$route['default_controller'] = "welcome";
-$route['404_override'] = '';
-
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
