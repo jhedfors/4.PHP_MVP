@@ -1,10 +1,29 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Plural_noun extends CI_Controller {
+class Login extends CI_Controller {
+	public function __construct(){
+		parent::__construct();
+		$this->load->model("User_model");
+	}
 	public function index()
 	{
-		$this->load->view('singular_noun_view');
+		$this->load->view('loginreg_view');
 	}
+	public function welcome(){
+		$info = $this->input->post();
+		$record = $this->User_model->login_user($info);
+		if($record){
+			$this->load->view('welcome_view',['record'=> $record]);
+			// 
+			// var_dump($record);
+			// die($record);
+		}
+		// redirect("login/welcome");
+	}
+	public function register(){
+
+	}
+
 }
 	/**
 	 * Index Page for this controller.
