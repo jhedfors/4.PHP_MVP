@@ -45,6 +45,7 @@ class Login extends CI_Controller {
 			$this->load->view('welcome_view',['record'=> $record]);
 		}
 	}
+
 	public function validate_reg($info){
 		$errors= array();
 		if (!$info['first_name']>0) {
