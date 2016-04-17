@@ -10,7 +10,7 @@
       <div class="header">
         <p>Welcome <?=$record['first_name'] ?></p>
         <div class="logoff">
-          <a href="/">Logoff</a>
+          <a href="/login/logoff">Logoff</a>
         </div>
       </div>
 			<div class="user_info">
