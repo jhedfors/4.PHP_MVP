@@ -4,27 +4,24 @@ class User_model extends CI_Model {
 	public function login_user($info){
 		$this->load->helper('security');
 		$email = $info['email'];
-		$password = do_hash($info['password']);
 		$record = $this->get_record_by_email($email);
-		if ($record['password'] == $password ) {
+		if ($record['password'] == $info['password'] ) {
 			$this->session->set_userdata('user_data',['id' => $record['id']]);
 			return $record;
 		}
 		else{
-			$this->session->set_userdata('errors_login',['Email/Password not valid']);
-			redirect('/');
-			exit;
+			return false;
 		}
 	}
+	//
 	public function register($info){
 		$this->load->helper('security');
 		$email = $info['email'];
-		$password = do_hash($info['password']);
 		$record = $this->get_record_by_email($email);
 		$query = "INSERT INTO users (first_name, last_name,
 							email, password, created_date, modified_date) VALUES (?, ?, ?, ?, NOW(), NOW())";
 		$values = [$info['first_name'],$info['last_name'],
-							$email,$password];
+							$email,$info['password']];
 		return $this->db->query($query,$values);
 	}
 	public function get_record_by_email($email){
