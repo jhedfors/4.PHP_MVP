@@ -6,15 +6,21 @@
   </head>
   <link rel="stylesheet" href="/assets/css/master.css">
   <body>
+    <?php
+    // wraps the succeeding content in another form where the "Courses" controller's index is 'listening' for errors.
+    echo form_open('Courses');
+    // echo validation_errors();//used if you want all the errors together instead of using the form_error below
+    ?>
     <div class="wrapper">
       <h3>Add a new course</h3>
       <form class="" action="/Courses/add" method="post">
-        <p>
+        <div>
           <label for="name">Name:</label><input type="text" name="name" value="">
-        </p>
-        <p>
-          <label for="description">Description:</label><textarea name="description" ></textarea>
-        </p>
+          <?php echo form_error('name'); ?>
+        </div>
+        <div>
+          <label for="description">Description:</label><textarea name="description" ><?php echo set_value('description'); ?></textarea>
+        </div>
         <input class="add" type="submit" value="Add">
       </form>
       <h3>Courses</h3>

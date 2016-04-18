@@ -6,6 +6,11 @@
 div.wrapper{
   margin: 20px;
 }
+div.error{
+  display: inline;
+  color: red;
+  margin-left: 5px;
+}
 
 label{
   width: 100px;

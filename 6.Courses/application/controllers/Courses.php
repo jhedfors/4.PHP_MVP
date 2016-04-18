@@ -9,9 +9,19 @@ class Courses extends CI_Controller {
   //when at the root directory the show()method is called
   public function index()
 	{
-    $this->show();
+    // created a custom library MY_form_validation which contains the following: $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
+    $this->form_validation->set_rules("name", "Name", "trim|required|min_length[15]");
+    $this->form_validation->set_rules("description", "Description", "trim");
+    if($this->form_validation->run() === FALSE)
+    {
+      $this->show();
+    }
+    else
+    {
+      $this->add();
+    }
 	}
-  //the show method will call the ge_all_courses method from the Course model and load the courses_page view
+  //the show method will call the get_all_courses method from the Course model and load the courses_page view
   public function show(){
     $courses =$this->Course->get_all_courses();
     $this->load->view('courses_page',["courses" => $courses]);
