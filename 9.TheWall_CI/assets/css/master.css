@@ -1,5 +1,101 @@
 *{
-  padding: 0px;
   margin: 0px;
+  padding: 0px;
+}
 
+div.wrapper{
+  margin: 0px;
+}
+div.header{
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+div.main{
+  margin: 20px;
+}
+
+h2, h4{
+  display: inline-block;
+}
+
+div.welcome{
+  display: inline-block;
+  float: right;
+  padding: 5px;
+}
+
+textarea{
+  width: 90%;
+  border: 1px solid black;
+}
+
+.message_post input{
+  float: right;
+  margin-right: 20%;
+}
+
+
+div.login{
+  border: solid black 1px;
+  width: 425px;
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
+}
+
+div.register{
+  border: solid black 1px;
+  width: 425px;
+  height: 150px;
+  margin: 10px;
+  padding: 10px;
+}
+
+div.error{
+  display: inline-block;
+  width: 75px;
+}
+
+form label{
+  width: 140px;
+  display: inline-block;
+}
+
+input[type="text"], input[type="password"]{
+  border: 1px solid black;
+  width: 110px;
+}
+div.error{
+  width: 160px;
+  margin-left: 5px;
+  color: red;
+  padding: 5px 0px;
+}
+
+input[type="submit"]{
+  display: block;
+  margin-top: 10px;
+}
+
+.messages{
+  padding: 10px 20px;
+  margin: 0px;
+}
+.comments{
+  padding: 10px 20px;
+  margin: 0px;
+}
+.post_header{
+  margin: 5px 0px;
+  font-weight: bold;
+}
+.post_body{
+  margin: 5px 0px;
+}
+.post_label{
+  margin-left: 20px;
+}
+
+div.comment{
+  margin: 20px;
 }

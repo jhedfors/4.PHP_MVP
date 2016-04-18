@@ -1,6 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-$route['default_controller'] = "plural_noun";
+$route['default_controller'] = "wall";
+$route['login'] = "wall/login";
+$route['register'] = "wall/register";
 $route['404_override'] = '';
 
 
