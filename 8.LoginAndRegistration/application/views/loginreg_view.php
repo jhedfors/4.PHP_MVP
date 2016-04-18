@@ -15,6 +15,7 @@
 		<div class="wrapper">
 			<div class="login">
 				<p class="borderline">Log In</p>
+				<?php echo form_open('login_form'); ?>
 				<form action="/login/welcome" method="post">
 					<label for="email">Email:</label>
 					<input type="email" name="email">
@@ -31,10 +32,10 @@
 					}
 					?>
 				</p>
-
 			</div>
 			<div class="registration">
 				<p class="borderline">Registration</p>
+				<?php echo form_open('registration_form'); ?>
 				<form action="/Login/register" method="post">
 					<label for="first_name">First Name:</label>
 					<input type="text" name="first_name">
@@ -57,9 +58,7 @@
 					}
 					?>
 				</p>
-
 			</div>
-
 		</div>
 	</body>
 </html>
