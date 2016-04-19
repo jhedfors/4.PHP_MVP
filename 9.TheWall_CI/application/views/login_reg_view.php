@@ -13,6 +13,7 @@
     $errors_login = $this->session->userdata('errors_login');
     $this->session->unset_userdata('errors_reg');
     $this->session->unset_userdata('errors_login');
+
      ?>
     <div class="wrapper">
       <div class="header">
