@@ -15,8 +15,18 @@ class Wall extends CI_Controller {
 	}
 	public function login(){
 
+
 		$this->form_validation->set_rules("email", "Email", "trim|required|valid_email");
 		$this->form_validation->set_rules("password", "Password", "trim|required");
+		// MH TEST OF
+		var_dump ($this->form_validation->run());
+		die( ' MIKE TEST OF VALIDATIONS ');
+		// END TEST
+		if($this->form_validation->run() === FALSE)		{
+			$this->session->set_userdata('errors_login',[validation_errors()]);
+			$this->load->view('login_reg_view');
+			exit;
+		}
 		if($this->form_validation->run() === FALSE)		{
 			$this->session->set_userdata('errors_login',[validation_errors()]);
 			$this->load->view('login_reg_view');
