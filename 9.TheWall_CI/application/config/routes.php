@@ -3,6 +3,7 @@
 $route['default_controller'] = "wall";
 $route['login'] = "wall/login";
 $route['register'] = "wall/register";
+$route['wall_view'] = "wall_view";
 $route['404_override'] = '';
 
 

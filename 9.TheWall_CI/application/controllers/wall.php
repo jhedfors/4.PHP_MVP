@@ -6,7 +6,6 @@ class Wall extends CI_Controller {
 		$this->load->model("wall_model");
 		$this->load->library('session');
 		$this->load->helper('security');
-
 	}
 	public function index()
 	{
@@ -14,24 +13,28 @@ class Wall extends CI_Controller {
 		$this->load->view('login_reg_view');
 	}
 	public function login(){
+		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules("email", "Email", "trim|required|valid_email");
 		$this->form_validation->set_rules("password", "Password", "trim|required");
-		if($this->form_validation->run() === FALSE)		{
-			$this->session->set_userdata('errors_login',[validation_errors()]);
-			$this->load->view('login_reg_view');
-			exit;
-		}
+		// if($this->form_validation->run() === FALSE)		{
+		//
+		//
+		// 	$this->session->set_userdata('errors_login',[validation_errors()]);
+		// 	$this->load->view('login_reg_view');
+		// 	exit;
+		// }
 		$info = $this->input->post();
 		$info['password'] = do_hash($info['password']);
-		$record = $this->User_model->login_user($info);
+		$record = $this->wall_model->login($info);
 		if(!$record){
 			$this->session->set_userdata('errors_login',['Email/Password not valid']);
 			redirect('/');
 			exit;
 		}
-		$this->wall_model->get_posts_and_comments();
-		$this->load->view('wall_view',['record'=> $record]);
+		$this->get_messages_and_comments();
+		// $this->load->view('wall_view',['record'=> $record]);
+		$this->load->view('wall_view');
 
 	}
 	public function register(){
@@ -55,7 +58,9 @@ class Wall extends CI_Controller {
 		$info['password'] = do_hash($info['password']);
 		$this->wall_model->register($info);
 		$record = $this->wall_model->login($info);
-		$this->session->set_userdata('current_user',$info['id']);
+		$this->session->set_userdata('current_user_id',$info['id']);
+		$this->session->set_userdata('first_name',$info['first_name']);
+		$this->session->set_userdata('last_name',$info['last_name']);
 		$this->load->view('wall_view',['record'=> $record]);
 		exit;
 	}
@@ -67,10 +72,20 @@ class Wall extends CI_Controller {
 		$this->session->set_userdata('comments',$comments);
 	}
 
+
+
 	public function add_message(){
 		$info = $this->input->post();
-		$current_user = $this->session->userdata('current_user');
+		$current_user = $this->session->userdata('user_data')['id'];
 		$this->wall_model->add_message($info['post_message'],$current_user);
+		// var_dump($this->session->userdata('user_data'));
+		// die();
+
+		$this->load->view('wall_view');
+
+
+		exit;
+
 	}
 	public function add_comment(){
 		$info = $this->input->post();

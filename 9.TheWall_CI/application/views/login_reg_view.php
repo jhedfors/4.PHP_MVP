@@ -7,6 +7,8 @@
   </head>
   <body>
     <?php
+    // $this->session->sess_destroy();
+
     $errors_reg = $this->session->userdata('errors_reg');
     $errors_login = $this->session->userdata('errors_login');
     $this->session->unset_userdata('errors_reg');
