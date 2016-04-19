@@ -1,6 +1,11 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-$route['default_controller'] = "plural_noun";
+$route['default_controller'] = "Dashboard";
+$route['signin'] = "/Dashboard/signin";
+$route['register'] = "/Dashboard/register";
+$route['users/new'] = "/Dashboard/new";
+$route['users/edit'] = "/Dashboard/edit";
+$route['dashboard/admin'] = "/Dashboard/admin";
 $route['404_override'] = '';
 
 

@@ -1,11 +1,33 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Plural_noun extends CI_Controller {
+class Dashboard extends CI_Controller {
 	public function index()
 	{
-		$this->load->view('singular_noun_view');
+		$this->load->view('welcome_view');
+	}
+	public function signin()
+	{
+		$this->load->view('signin_view');
+	}
+	public function register()
+	{
+		$this->load->view('register_view');
+	}
+	public function new()
+	{
+		$this->load->view('new_user_view');
+	}
+	public function admin()
+	{
+		$this->load->view('admin_view');
+	}
+	public function edit()
+	{
+		$this->load->view('edit_profile_view');
 	}
 }
+
+
 	/**
 	 * Index Page for this controller.
 	 *
