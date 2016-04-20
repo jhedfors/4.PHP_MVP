@@ -1,6 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller {
+	public function __construct(){
+		parent::__construct();
+		$this->load->model('user_model');
+	}
 	public function index()
 	{
 		$this->load->view('dashboard_view',['user_level' => 'normal']);
@@ -14,6 +18,13 @@ class Dashboard extends CI_Controller {
 	{
 		$arr['id'] = $id;
 		$this->load->view('edit_profile_view',$arr);
+	}
+	public function delete_user($id)
+	{
+		$arr['id'] = $id;
+		$this->user_model->delete_user($id);
+
+
 	}
 
 }

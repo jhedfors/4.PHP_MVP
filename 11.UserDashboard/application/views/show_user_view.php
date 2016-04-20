@@ -14,10 +14,15 @@
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
 			  <div class="row">
-          <div class="col s2"><p>Test App</p></div>
-			    <div class="col s1"><p><a href="./">Home</a></p></p></div>
-			    <div class="col s7"><p></p></div>
-			    <div class="col s2"><p><a href="signin">Sign in</a></p></div>
+          <div class="col s2">Test App</div>
+          <div class="col s2">
+            <a href="/Dashboard">Dashboard</a>
+          </div>
+          <div class="col s1">
+            <a href="/users/edit">Profile</a>
+          </div>
+			    <div class="col s5"><p></p></div>
+			    <div class="col s2"><a href="/signin">Sign in</a></div>
 			  </div>
     </div>
   </nav>
@@ -28,14 +33,23 @@
       </div>
       <div class="col s10">
         <br><br>
-        <h4 class="header orange-text left-align">Michael Choi</h4>
+        <?php
+          $info = $this->session->userdata('user_data');
+          $profile = $this->session->userdata('profile_data');
+
+         ?>
+        <h4 class="header orange-text left-align"><?php
+          echo $profile['first_name'];
+          echo " ";
+          echo $profile['last_name'];
+          ?></h4>
         <div class="row">
           <div class="col s12">
-            <p><label class="info" >Registered at:</label>December 24th 2012</p>
-            <p><label class="info" >User ID:</label>#1</p>
-            <p><label class="info" >Email address:</label>michael@village88.com</p>
-            <p><label class="info" >Description:</label>I am happy to be here!</p>
-            <b>Leave a message for Michael</b>
+            <p><label class="info" >Registered at:</label><?php echo $profile['created_on']; ?></p>
+            <p><label class="info" >User ID:</label><?php echo $profile['id']; ?></p>
+            <p><label class="info" >Email address:</label><?php echo $profile['email']; ?></p>
+            <p><label class="info" >Description:</label><?php echo $profile['description']; ?></p>
+            <b>Leave a message for <?php echo $profile['first_name'] ?></b>
             <form class="" action="index.html" method="post">
               <label for="new_message"></label>
               <textarea name="new_message"></textarea>
@@ -129,6 +143,12 @@
   </div>
 
 
+<?php
+  echo 'info';
+  var_dump($info);
+  echo 'profile';
+  var_dump($info);
+   ?>
 
 
 

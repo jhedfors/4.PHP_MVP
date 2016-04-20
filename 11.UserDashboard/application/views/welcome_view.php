@@ -11,13 +11,17 @@
   <link href="/assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+	<?php
+	$this->session->sess_destroy();
+
+	 ?>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
 			  <div class="row">
-					<div class="col s2"><p>Test App</p></div>
-			    <div class="col s1"><p><a href="./">Home</a></p></p></div>
+					<div class="col s2">Test App</div>
+			    <div class="col s1"><a href="./">Home</a></div>
 			    <div class="col s7"><p></p></div>
-			    <div class="col s2"><p><a href="/signin">Sign in</a></p></div>
+			    <div class="col s2"><a href="/signin">Sign in</a></div>
 			  </div>
     </div>
   </nav>

@@ -13,12 +13,12 @@
 <body>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
-			  <div class="row">
-          <div class="col s2"><p>Test App</p></div>
-			    <div class="col s1"><p><a href="./">Home</a></p></p></div>
-			    <div class="col s7"><p></p></div>
-			    <div class="col s2"><p><a href="/signin">Sign in</a></p></div>
-			  </div>
+      <div class="row">
+        <div class="col s2">Test App</div>
+        <div class="col s1"><a href="/">Home</a></div>
+        <div class="col s7"><p></p></div>
+        <div class="col s2"><a href="signin">Sign in</a></div>
+      </div>
     </div>
   </nav>
   <div class="section no-pad-bot" id="index-banner">
@@ -26,7 +26,11 @@
       <div class="col s4">
         <br><br>
         <h4 class="header orange-text left-align">Add a new user</h4>
-          <form action="" method="post">
+        <?php echo form_open('register_user');
+          echo validation_errors();
+
+        ?>
+          <form action="register_user" method="post">
   					<label class="left-align"for="email">Email Address:</label>
   					<input type="email" name="email" value="">
             <label class="left-align"for="first_name">First Name:</label>

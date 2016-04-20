@@ -13,12 +13,17 @@
 <body>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
-			  <div class="row">
-          <div class="col s2"><p>Test App</p></div>
-			    <div class="col s1"><p><a href="./">Home</a></p></p></div>
-			    <div class="col s7"><p></p></div>
-			    <div class="col s2"><p><a href="signin">Sign in</a></p></div>
-			  </div>
+      <div class="row">
+        <div class="col s2">Test App</div>
+        <div class="col s2">
+          <a href="/Dashboard">Dashboard</a>
+        </div>
+        <div class="col s1">
+          <a href="/users/edit">Profile</a>
+        </div>
+        <div class="col s5"><p></p></div>
+        <div class="col s2"><a href="signin">Sign in</a></div>
+      </div>
     </div>
   </nav>
   <div class="section no-pad-bot" id="index-banner">
