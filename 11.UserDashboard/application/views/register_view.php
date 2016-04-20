@@ -17,7 +17,7 @@
           <div class="col s2"><p>Test App</p></div>
 			    <div class="col s1"><p><a href="./">Home</a></p></p></div>
 			    <div class="col s7"><p></p></div>
-			    <div class="col s2"><p><a href="signin">Sign in</a></p></div>
+			    <div class="col s2"><p><a href="/signin">Sign in</a></p></div>
 			  </div>
     </div>
   </nav>
@@ -25,7 +25,7 @@
     <div class="row">
       <div class="col s4">
         <br><br>
-        <h4 class="header orange-text left-align">Register</h4>
+        <h4 class="header orange-text left-align">Add a new user</h4>
           <form action="" method="post">
   					<label class="left-align"for="email">Email Address:</label>
   					<input type="email" name="email" value="">
@@ -37,10 +37,19 @@
             <input type="password" name="password" value="">
             <label class="left-align"for="confirm_password">Confirm Password</label>
             <input type="password" name="confirm_password" value="">
-  					<input class="btn-large waves-effect waves-light orange" type="submit" value="Register">
+  					<input class="btn-large waves-effect waves-light orange" type="submit" value="Create">
           </form>
 
         </div>
+        <div class="cols 4">
+
+        </div>
+        <div class="cols 6 center">
+
+        <a class="btn waves-effect waves-light orange" href="/dashboard/admin">Return to Dashboard</a>
+
+        </div>
+
     </div>
 
     </div>

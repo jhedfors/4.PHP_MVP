@@ -26,6 +26,7 @@
       <div class="col s4">
         <br><br>
         <h4 class="header  orange-text left-align">Sign in</h4>
+        <?php echo form_open('signin_user') ?>
           <form action="" method="post">
   					<label class="left-align"for="email">Email Address</label>
   					<input type="email" name="name" value="">

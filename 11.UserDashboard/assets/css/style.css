@@ -16,3 +16,14 @@
 form{
   margin-bottom: 20px;
 }
+label.info{
+  display: inline-block;
+  width: 100px;
+}
+div.message{
+  display: block;
+  border: 1px solid grey;
+  padding: 5px;
+  margin: 5px;
+  min-height: 50px;
+}

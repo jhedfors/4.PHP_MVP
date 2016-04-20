@@ -1,13 +1,38 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Users extends CI_Controller {
+	public function __construct(){
+		parent::__construct();
+		$this->load->model('user_model');
+
+	}
 	public function index()
 	{
-		$this->load->view('new_user_view');
+		$this->load->view('welcome_view');
+	}
+	public function signin_user()
+	{
+		$this->user_model->signin();
+		$this->load->view('signin_view');
+
+
+		// $this->load->model('user_model');
+	}
+	public function register_user()
+	{
+		$this->load->view('register_view');
 	}
   public function new()
   {
     $this->load->view('new_user_view');
+  }
+  public function edit()
+  {
+    $this->load->view('edit_profile_view');
+  }
+  public function show()
+  {
+    $this->load->view('show_user_view');
   }
 
 }

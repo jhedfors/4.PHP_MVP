@@ -27,10 +27,23 @@
       <p></p>
       </div>
       <div class="col s10">
-        <br><br>
-        <h4 class="header orange-text left-align">Edit profile</h4>
+        <div class="row">
+          <div class="cols 6 left">
+            <?php
+            if(isset($id)){
+              echo $id;
+            }
+
+             ?>
+            <h4 class="header orange-text left-align ">Edit profile/Edit user $[user_id]</h4>
+          </div>
+          <div class="cols 6 right">
+            <a class="btn waves-effect waves-light orange " href="/dashboard/admin">Return to Dashboard</a>
+          </div>
+        </div>
         <div class="row">
           <div class="col s5">
+            <p>Edit Information</p>
             <form action="" method="post">
     					<label class="left-align"for="email">Email Address:</label>
     					<input type="email" name="email" value="">
@@ -38,44 +51,45 @@
               <input type="text" name="first_name" value="">
               <label class="left-align"for="last_name">Last Name:</label>
               <input type="text" name="last_name" value="">
-              <label class="left-align"for="password">Password</label>
-              <input type="password" name="password" value="">
-              <label class="left-align"for="confirm_password">Confirm Password</label>
-              <input type="password" name="confirm_password" value="">
-    					<input class="btn-large waves-effect waves-light orange" type="submit" value="Register">
+              <label class="left-align" for="user_level">User Level</label>
+              <div class="input-field">
+                <select  name="user_level">
+                  <option value = "Normal">Normal</option>
+                  <option value = "Admin">Admin</option>
+                </select>
+              </div>
+
+    					<input class="btn waves-effect waves-light orange" type="submit" value="Save">
+
             </form>
           </div>
           <div class="col s5">
+            <p>Change Password</p>
             <form action="" method="post">
-    					<label class="left-align"for="email">Email Address:</label>
-    					<input type="email" name="email" value="">
-              <label class="left-align"for="first_name">First Name:</label>
-              <input type="text" name="first_name" value="">
-              <label class="left-align"for="last_name">Last Name:</label>
-              <input type="text" name="last_name" value="">
               <label class="left-align"for="password">Password</label>
               <input type="password" name="password" value="">
               <label class="left-align"for="confirm_password">Confirm Password</label>
               <input type="password" name="confirm_password" value="">
-    					<input class="btn-large waves-effect waves-light orange" type="submit" value="Register">
+    					<input class="btn waves-effect waves-light orange" type="submit" value="update password">
             </form>
           </div>
         </div>
-
-
-        </div>
         <div class="row">
-          <h1>Edit Description</h1>
-
+          <p>Edit Description</p>
+          <form class="" action="index.html" method="post">
+            <label for="description"></label>
+            <textarea name="description"></textarea>
+  					<input class="btn waves-effect waves-light orange" type="submit" value="save">
+          </form>
         </div>
       </div>
-      <div class="col s1">
-      <p></p>
-      </div>
+
     </div>
-
+    <div class="col s1">
+      <p></p>
     </div>
   </div>
+
 
 
 
@@ -84,6 +98,11 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="/assets/js/materialize.js"></script>
   <script src="/assets/js/init.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+  $('select').material_select();
+});
+  </script>
 
   </body>
 </html>

@@ -15,9 +15,9 @@
     <div class="nav-wrapper container">
 			  <div class="row">
           <div class="col s2"><p>Test App</p></div>
-			    <div class="col s1"><p><a href="./">Home</a></p></p></div>
+			    <div class="col s1"><p><a href="/">Home</a></p></p></div>
 			    <div class="col s7"><p></p></div>
-			    <div class="col s2"><p><a href="signin">Sign in</a></p></div>
+			    <div class="col s2"><p><a href="/signin">Sign in</a></p></div>
 			  </div>
     </div>
   </nav>
@@ -29,8 +29,19 @@
         </p>
       </div>
       <div class="col s8 container">
-        <br><br>
-        <h4 class="header orange-text left-align">Manage Users</h4>
+        <div class="row">
+          <div class="cols 6 left">
+            <h4 class="header orange-text left-align">Manage Users</h4>
+            <?php
+              if(isset($user_level)){
+                  echo $user_level;
+              }
+          ?>
+          </div>
+          <div class="cols 6 right">
+            <a class="btn waves-effect waves-light orange " href="/users/new">Add new</a>
+          </div>
+        </div>
         <div class="">
           <table class="striped">
             <thead>

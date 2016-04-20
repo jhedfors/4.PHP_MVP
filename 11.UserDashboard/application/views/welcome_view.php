@@ -17,7 +17,7 @@
 					<div class="col s2"><p>Test App</p></div>
 			    <div class="col s1"><p><a href="./">Home</a></p></p></div>
 			    <div class="col s7"><p></p></div>
-			    <div class="col s2"><p><a href="signin">Sign in</a></p></div>
+			    <div class="col s2"><p><a href="/signin">Sign in</a></p></div>
 			  </div>
     </div>
   </nav>
@@ -29,7 +29,7 @@
         <h5 class="header col s12 light">We're going to build a cool application using an MVC framework! This application was built with the Village88 folks</h5>
       </div>
       <div class="row center">
-        <a href="" id="download-button" class="btn-large waves-effect waves-light orange">Start</a>
+        <a href="/signin" id="download-button" class="btn-large waves-effect waves-light orange">Start</a>
       </div>
       <br><br>
 
