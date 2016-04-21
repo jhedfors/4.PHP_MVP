@@ -12,10 +12,13 @@
 </head>
 <body>
   <?php
-    $info = $this->session->userdata('user_data');
-    $profile = $this->session->userdata('profile_data');
-    $users = $this->session->userdata('all_users');
+  $info = $this->session->userdata('user_data');
+  $profile = $this->session->userdata('profile_data');
+  $users = $this->session->userdata('all_users');
+  $user_level = $info['user_level'];
+
    ?>
+
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
 			  <div class="row">
@@ -60,18 +63,18 @@
         <div class="row">
           <div class="col s5">
             <p>Edit Information</p>
-            <form action="" method="post">
+            <form action="/users/edit_information" method="post">
     					<label class="left-align"for="email">Email Address:</label>
-    					<input type="email" name="email" value="">
+    					<input type="email" name="email" value="<?php echo $profile['email'] ?>">
               <label class="left-align"for="first_name">First Name:</label>
-              <input type="text" name="first_name" value="">
+              <input type="text" name="first_name" value="<?php echo $profile['first_name'] ?>">
               <label class="left-align"for="last_name">Last Name:</label>
-              <input type="text" name="last_name" value="">
+              <input type="text" name="last_name" value="<?php echo $profile['last_name'] ?>">
               <label class="left-align" for="user_level">User Level</label>
               <div class="input-field">
                 <select  name="user_level">
-                  <option value = "Normal">Normal</option>
-                  <option value = "Admin">Admin</option>
+                  <option <?php if($profile['user_level'] == 'normal') echo "selected" ?> value = "normal">Normal</option>
+                  <option  <?php if($profile['user_level'] == 'admin') echo "selected" ?> value = "admin">Admin</option>
                 </select>
               </div>
 
@@ -81,7 +84,7 @@
           </div>
           <div class="col s5">
             <p>Change Password</p>
-            <form action="" method="post">
+            <form action="/users/edit_password" method="post">
               <label class="left-align"for="password">Password</label>
               <input type="password" name="password" value="">
               <label class="left-align"for="confirm_password">Confirm Password</label>
@@ -92,9 +95,9 @@
         </div>
         <div class="row">
           <p>Edit Description</p>
-          <form class="" action="index.html" method="post">
+          <form class="" action="/users/edit_description" method="post">
             <label for="description"></label>
-            <textarea name="description"></textarea>
+            <textarea name="description"><?php echo $profile['description'] ?></textarea>
   					<input class="btn waves-effect waves-light orange" type="submit" value="save">
           </form>
         </div>
@@ -108,12 +111,20 @@
 
 
   <?php
-    echo 'info';
-    var_dump($info);
-    echo 'profile';
-    var_dump($profile);
-    echo 'users';
-    var_dump($users);
+
+    if (isset($this->session->userdata['errors'])) {
+      $errors = $this->session->userdata['errors'];
+      var_dump($errors);
+    }
+
+    $this->session->unset_userdata('errors');
+    // echo 'info';
+    // var_dump($info);
+    // echo 'profile';
+    // var_dump($profile);
+    // echo 'users';
+    // var_dump($users);
+
   ?>
 
 

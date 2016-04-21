@@ -8,18 +8,20 @@ class Dashboard extends CI_Controller {
 	}
 	public function index()
 	{
-
 		$users = $this->user_model->show_all_users();
 		$this->session->set_userdata('all_users',$users);
 		$this->load->view('dashboard_view');
 	}
 	public function admin()
 	{
-
 		$this->load->view('dashboard_view',['user_level' => 'admin']);
 	}
 	public function edit_user($id)
 	{
+		$user_level = $this->session->userdata('user_data')['user_level'];
+		if ($user_level != 'admin') {
+			redirect('/not_allowed');
+		}
 		$user_data = $this->user_model->get_record_by_id($id);
 		$this->session->set_userdata('profile_data',$user_data);
 		$this->load->view('edit_profile_view');
@@ -28,8 +30,7 @@ class Dashboard extends CI_Controller {
 	{
 		$arr['id'] = $id;
 		$this->user_model->delete_user($id);
-
-
+		redirect('dashboard/admin');
 	}
 
 }

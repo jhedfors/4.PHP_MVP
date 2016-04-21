@@ -15,6 +15,7 @@
     $info = $this->session->userdata('user_data');
     $profile = $this->session->userdata('profile_data');
     $users = $this->session->userdata('all_users');
+    $user_level = $info['user_level'];
 
    ?>
   <nav class="light-blue lighten-1" role="navigation">
@@ -22,7 +23,10 @@
 			  <div class="row">
           <div class="col s2">Test App</div>
           <div class="col s2">
-            <a href="/Dashboard">Dashboard</a>
+            <!-- href="/users/show/<?php echo $user['id'] ?>" -->
+            <a href="/Dashboard/<?php if ($user_level == 'admin') {
+              echo "admin";
+            } ?>">Dashboard</a>
           </div>
           <div class="col s1">
             <a href="/users/edit">Profile</a>
@@ -36,21 +40,24 @@
     <div class="row">
       <div class="col s1">
         <p>
-
         </p>
       </div>
       <div class="col s8 container">
         <div class="row">
           <div class="cols 6 left">
-            <h4 class="header orange-text left-align">Manage Users</h4>
-            <?php
-              if(isset($user_level)){
-                  echo $user_level;
-              }
-          ?>
+            <h4 class="header orange-text left-align">
+            <?php if ($user_level == 'admin') {
+              echo 'Manage Users';
+            }else {
+              echo 'All Users';
+            }
+            ?>
+          </h4>
           </div>
           <div class="cols 6 right">
-            <a class="btn waves-effect waves-light orange " href="/users/new">Add new</a>
+            <?php if ($user_level == 'admin') {?>
+              <a class="btn waves-effect waves-light orange " href="/users/new">Add new</a>
+            <?php } ?>
           </div>
         </div>
         <div class="">
@@ -62,7 +69,12 @@
                 <th>email</th>
                 <th>created_at</th>
                 <th>user_level</th>
+                <?php if ($user_level == 'admin') {
+                ?>
                 <th>actions</th>
+                <?php
+                }
+                ?>
               </tr>
             </thead>
             <tbody>
@@ -75,29 +87,22 @@
                         <td><?php echo $user['email'] ?></td>
                         <td><?php echo $user['created_on'] ?></td>
                         <td><?php echo $user['user_level'] ?></td>
-                        <td><a href="/users/edit/<?php echo $user['id'] ?>">edit</a><a href="/Dashboard/delete_user/<?php echo $user['id'] ?>">remove</a></td>
+                        <?php if ($user_level == 'admin') {
+                        ?>
+                        <td><a href="/users/edit/<?php echo $user['id'] ?>">edit</a> <a href="/Dashboard/delete_user/<?php echo $user['id'] ?>">remove</a></td>
                       </tr>
+                        <?php
+                        }
+                        ?>
                 <?php
                     }
                  ?>
             </tbody>
           </table>
-
-        <a class="btn waves-effect waves-light orange" href="/users/new">Add New</a>
-
         </div>
     </div>
     </div>
   </div>
-
-  <?php
-    echo 'info';
-    var_dump($info);
-    echo 'profile';
-    var_dump($profile);
-    echo 'users';
-    var_dump($users);
-  ?>
 
 
   <!--  Scripts-->

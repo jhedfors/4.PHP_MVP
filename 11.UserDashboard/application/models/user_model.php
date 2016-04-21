@@ -43,7 +43,6 @@ class User_model extends CI_Model {
 	public function get_record_by_id($id){
 
 		return $this->db->get_where('users', array('id' => $id))->row_array();
-
 	}
 
 	public function get_profile($id){
@@ -54,27 +53,21 @@ class User_model extends CI_Model {
 		else {
 			return false;
 		}
+	}
 
-
-
+	public function edit_info($post_info,$id){
+		$this->db->where('id', $id);
+		$this->db->update('users', $post_info);
+	}
+	public function edit_password($post_info,$id){
+		$this->db->where('id', $id);
+		$this->db->update('users', $post_info);
+	}
+	public function edit_description($post_info,$id){
+		$this->db->where('id', $id);
+		$this->db->update('users', $post_info);
 	}
 	public function delete_user($id){
-		die($id);
+		$this->db->delete('users', array('id' => $id)); 
 	}
-
-
-
-	//
-	// $info = $this->input->post();
-	// $info['password'] = do_hash($info['password']);
-	// $record = $this->wall_model->login($info);
-	// if(!$record){
-	// 	$this->session->set_userdata('errors_login',['Email/Password not valid']);
-	// 	redirect('/');
-	// 	exit;
-	// }
-	// $this->get_messages_and_comments();
-	//
-	// $this->load->view('wall_view');
-
 }

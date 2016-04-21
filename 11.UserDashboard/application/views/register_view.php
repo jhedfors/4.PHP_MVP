@@ -28,7 +28,6 @@
         <h4 class="header orange-text left-align">Add a new user</h4>
         <?php echo form_open('register_user');
           echo validation_errors();
-
         ?>
           <form action="register_user" method="post">
   					<label class="left-align"for="email">Email Address:</label>
@@ -59,6 +58,11 @@
     </div>
   </div>
 
+  <?php
+    $errors = $this->session->userdata['errors_reg'];
+    var_dump($errors);
+
+  ?>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

@@ -12,9 +12,10 @@
 </head>
 <body>
   <?php
-    $info = $this->session->userdata('user_data');
-    $profile = $this->session->userdata('profile_data');
-    $users = $this->session->userdata('all_users');
+  $info = $this->session->userdata('user_data');
+  $profile = $this->session->userdata('profile_data');
+  $users = $this->session->userdata('all_users');
+  $user_level = $info['user_level'];
    ?>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
