@@ -16,26 +16,26 @@
     $profile = $this->session->userdata('profile_data');
     $users = $this->session->userdata('all_users');
     $user_level = $info['user_level'];
-
    ?>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container">
-			  <div class="row">
-          <div class="col s2">Test App</div>
-          <div class="col s2">
-            <!-- href="/users/show/<?php echo $user['id'] ?>" -->
-            <a href="/Dashboard/<?php if ($user_level == 'admin') {
-              echo "admin";
-            } ?>">Dashboard</a>
-          </div>
-          <div class="col s1">
-            <a href="/users/edit">Profile</a>
-          </div>
-			    <div class="col s5"><p></p></div>
-			    <div class="col s2"><a href="/signin">Sign in</a></div>
-			  </div>
-    </div>
-  </nav>
+   <nav class="light-blue lighten-1" role="navigation">
+     <div class="nav-wrapper container">
+ 			  <div class="row">
+           <div class="col s2">Test App</div>
+           <div class="col s2">
+             <!-- href="/users/show/<?php echo $user['id'] ?>" -->
+             <a href="/Dashboard/<?php if ($user_level == 'admin') {
+               echo "admin";
+             } ?>">Dashboard</a>
+           </div>
+           <div class="col s1">
+             <a href="/users/edit">Profile</a>
+           </div>
+ 			    <div class="col s5"><p></p></div>
+ 			    <div class="col s2"><a href="/signin">Sign in</a></div>
+ 			  </div>
+     </div>
+     </nav>
+
     <div class="section no-pad-bot" id="index-banner">
     <div class="row">
       <div class="col s1">

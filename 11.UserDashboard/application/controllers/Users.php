@@ -60,7 +60,7 @@ class Users extends CI_Controller {
   public function new()
   {
 
-    $this->load->view('register_view');
+    $this->load->view('new_view');
   }
 	public function edit_information(){
 		$this->form_validation->set_rules("first_name", "First Name", "trim|required|min_length[1]");
