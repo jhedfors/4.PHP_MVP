@@ -44,9 +44,22 @@ class Users extends CI_Controller {
 	{
 		$this->load->view('register_view');
 	}
-	public function register_user()
-	{
-		$record = $this->user_model->register();
+	public function register_user(){
+		$this->form_validation->set_rules("first_name", "First Name", "trim|required|min_length[1]");
+		$this->form_validation->set_rules("last_name", "Last Name", "trim|required|min_length[1]");
+		$this->form_validation->set_rules("email", "Email", "trim|required|min_length[1]");
+		$this->form_validation->set_rules("password", "Password", "trim|required|min_length[8]");
+		$this->form_validation->set_rules("confirm_password", "Confirmed Password", "trim|required|matches[password]");
+		if(!$this->form_validation->run()){
+			$this->session->set_userdata('errors_reg',[validation_errors()]);
+
+			redirect('/register');
+			exit;
+		}
+
+
+		$record = $this->user_model->add_user();
+		$this->session->set_userdata('user_data',$record);
 		redirect("users/show/".$record['id']."");
 
 	}
@@ -56,6 +69,8 @@ class Users extends CI_Controller {
   }
   public function edit()
   {
+		$user_data = $this->session->userdata('user_data');
+		$this->session->set_userdata('profile_data',$user_data); 
     $this->load->view('edit_profile_view');
   }
 	public function show($id)

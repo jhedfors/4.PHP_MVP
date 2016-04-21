@@ -6,29 +6,10 @@ class User_model extends CI_Model {
 		$this->load->library('session');
 		$this->load->helper('security');
 	}
-	public function index(){
-
-	}
-
-	public function signin(){
-
-	}
-	public function register(){
-		$this->form_validation->set_rules("first_name", "First Name", "trim|required|min_length[1]");
-		$this->form_validation->set_rules("last_name", "Last Name", "trim|required|min_length[1]");
-		$this->form_validation->set_rules("email", "Email", "trim|required|min_length[1]");
-		$this->form_validation->set_rules("password", "Password", "trim|required|min_length[8]");
-		$this->form_validation->set_rules("confirm_password", "Confirmed Password", "trim|required|matches[password]");
-		if($this->form_validation->run() === FALSE){
-			$this->session->set_userdata('errors_reg',[validation_errors()]);
-
-			redirect('/register');
-			exit;
-		}
-		$this->add_user();
-	}
 	public function add_user(){
 		$info = $this->input->post();
+		$info['user_level'] = 'normal';
+		$info['description'] = '';
 		$errors= array();
 		$record = $this->get_record_by_email($info['email']);
 		if ($record) {
@@ -38,11 +19,20 @@ class User_model extends CI_Model {
 		}
 		$this->load->helper('security');
 		$info['password'] = do_hash($info['password']);
-		$this->register($info);
-		$record = $this->login_user($info);
-		$this->load->view('welcome_view',['record'=> $record]);
+		$values = array('first_name' => $info['first_name'],
+		'last_name' => $info['last_name'],
+		'description' =>$info['description'],
+		'email' =>$info['email'],
+		'password' =>$info['password'],
+		'user_level' =>$info['user_level'],
+		'created_on' => date("Y-m-d, H:i:s"),
+		'modified_on' => date("Y-m-d, H:i:s"));
+		$this->db->insert('users', $values);
+		return $this->get_record_by_email($info['email']);
+	}
 
-
+	public function show_all_users(){
+		return $this->db->get('users')->result_array();
 	}
 
 	public function get_record_by_email($email){

@@ -4,10 +4,14 @@ class Dashboard extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('user_model');
+		$this->load->library('session');
 	}
 	public function index()
 	{
-		$this->load->view('dashboard_view',['user_level' => 'normal']);
+
+		$users = $this->user_model->show_all_users();
+		$this->session->set_userdata('all_users',$users);
+		$this->load->view('dashboard_view');
 	}
 	public function admin()
 	{
@@ -16,8 +20,9 @@ class Dashboard extends CI_Controller {
 	}
 	public function edit_user($id)
 	{
-		$arr['id'] = $id;
-		$this->load->view('edit_profile_view',$arr);
+		$user_data = $this->user_model->get_record_by_id($id);
+		$this->session->set_userdata('profile_data',$user_data);
+		$this->load->view('edit_profile_view');
 	}
 	public function delete_user($id)
 	{

@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <title>Show User</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -11,6 +11,11 @@
   <link href="/assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+  <?php
+    $info = $this->session->userdata('user_data');
+    $profile = $this->session->userdata('profile_data');
+    $users = $this->session->userdata('all_users');
+   ?>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
 			  <div class="row">
@@ -33,11 +38,7 @@
       </div>
       <div class="col s10">
         <br><br>
-        <?php
-          $info = $this->session->userdata('user_data');
-          $profile = $this->session->userdata('profile_data');
 
-         ?>
         <h4 class="header orange-text left-align"><?php
           echo $profile['first_name'];
           echo " ";
@@ -147,7 +148,7 @@
   echo 'info';
   var_dump($info);
   echo 'profile';
-  var_dump($info);
+  var_dump($profile);
    ?>
 
 

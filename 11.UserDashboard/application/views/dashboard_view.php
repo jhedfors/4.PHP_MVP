@@ -11,22 +11,28 @@
   <link href="/assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+  <?php
+    $info = $this->session->userdata('user_data');
+    $profile = $this->session->userdata('profile_data');
+    $users = $this->session->userdata('all_users');
+
+   ?>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
-      <div class="row">
-        <div class="col s2">Test App</div>
-        <div class="col s2">
-          <a href="/Dashboard">Dashboard</a>
-        </div>
-        <div class="col s1">
-          <a href="/users/edit">Profile</a>
-        </div>
-        <div class="col s5"><p></p></div>
-        <div class="col s2"><a href="/signin">Sign in</a></div>
-      </div>
+			  <div class="row">
+          <div class="col s2">Test App</div>
+          <div class="col s2">
+            <a href="/Dashboard">Dashboard</a>
+          </div>
+          <div class="col s1">
+            <a href="/users/edit">Profile</a>
+          </div>
+			    <div class="col s5"><p></p></div>
+			    <div class="col s2"><a href="/signin">Sign in</a></div>
+			  </div>
     </div>
   </nav>
-  <div class="section no-pad-bot" id="index-banner">
+    <div class="section no-pad-bot" id="index-banner">
     <div class="row">
       <div class="col s1">
         <p>
@@ -60,65 +66,38 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td><a href="/users/show/1">Michael Choi</a></td>
-                <td>michael@village88.com</td>
-                <td>Dec 24th 2012</td>
-                <td>admin</td>
-                <td><a href="/users/edit/1">edit</a><a href="/Dashboard/delete_user/1">remove</a></td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td><a href="#">Michael Choi</a></td>
-                <td>michael@village88.com</td>
-                <td>Dec 24th 2012</td>
-                <td>admin</td>
-                <td><a href="#">edit</a><a href="#">remove</a></td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td><a href="#">Michael Choi</a></td>
-                <td>michael@village88.com</td>
-                <td>Dec 24th 2012</td>
-                <td>admin</td>
-                <td><a href="#">edit</a><a href="#">remove</a></td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td><a href="#">Michael Choi</a></td>
-                <td>michael@village88.com</td>
-                <td>Dec 24th 2012</td>
-                <td>admin</td>
-                <td><a href="#">edit</a><a href="#">remove</a></td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td><a href="#">Michael Choi</a></td>
-                <td>michael@village88.com</td>
-                <td>Dec 24th 2012</td>
-                <td>admin</td>
-                <td><a href="/users/edit/1">edit</a><a href="#">remove</a></td>
-              </tr>
+                <?php
+                    foreach ($users as $user) {
+                ?>
+                      <tr>
+                        <td><?php echo $user['id'] ?></td>
+                        <td><a href="/users/show/<?php echo $user['id'] ?>"><?php echo $user['first_name']; echo " ";echo $user['last_name']; ?></a></td>
+                        <td><?php echo $user['email'] ?></td>
+                        <td><?php echo $user['created_on'] ?></td>
+                        <td><?php echo $user['user_level'] ?></td>
+                        <td><a href="/users/edit/<?php echo $user['id'] ?>">edit</a><a href="/Dashboard/delete_user/<?php echo $user['id'] ?>">remove</a></td>
+                      </tr>
+                <?php
+                    }
+                 ?>
             </tbody>
           </table>
 
         <a class="btn waves-effect waves-light orange" href="/users/new">Add New</a>
 
         </div>
-
-
-
     </div>
-
-
-
-
-
     </div>
   </div>
 
-
+  <?php
+    echo 'info';
+    var_dump($info);
+    echo 'profile';
+    var_dump($profile);
+    echo 'users';
+    var_dump($users);
+  ?>
 
 
   <!--  Scripts-->

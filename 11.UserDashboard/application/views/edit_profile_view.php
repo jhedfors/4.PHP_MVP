@@ -11,19 +11,24 @@
   <link href="/assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+  <?php
+    $info = $this->session->userdata('user_data');
+    $profile = $this->session->userdata('profile_data');
+    $users = $this->session->userdata('all_users');
+   ?>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
-      <div class="row">
-        <div class="col s2">Test App</div>
-        <div class="col s2">
-          <a href="/Dashboard">Dashboard</a>
-        </div>
-        <div class="col s1">
-          <a href="/users/edit">Profile</a>
-        </div>
-        <div class="col s5"><p></p></div>
-        <div class="col s2"><a href="signin">Sign in</a></div>
-      </div>
+			  <div class="row">
+          <div class="col s2">Test App</div>
+          <div class="col s2">
+            <a href="/Dashboard">Dashboard</a>
+          </div>
+          <div class="col s1">
+            <a href="/users/edit">Profile</a>
+          </div>
+			    <div class="col s5"><p></p></div>
+			    <div class="col s2"><a href="/signin">Sign in</a></div>
+			  </div>
     </div>
   </nav>
   <div class="section no-pad-bot" id="index-banner">
@@ -34,16 +39,22 @@
       <div class="col s10">
         <div class="row">
           <div class="cols 6 left">
-            <?php
-            if(isset($id)){
-              echo $id;
-            }
-
-             ?>
-            <h4 class="header orange-text left-align ">Edit profile/Edit user $[user_id]</h4>
+            <h4 class="header orange-text left-align ">
+              <?php
+                if ($info['id'] == $profile['id']) {
+                  echo "Edit profile";
+                }
+                else{
+                  echo "Edit user ".$profile['id']."";
+                }
+                ?>
+              </h4>
           </div>
           <div class="cols 6 right">
-            <a class="btn waves-effect waves-light orange " href="/dashboard/admin">Return to Dashboard</a>
+            <?php if ($info['user_level'] == 'admin') {?>
+                <a class="btn waves-effect waves-light orange " href="/dashboard/admin">Return to Dashboard</a>
+            <?php } ?>
+
           </div>
         </div>
         <div class="row">
@@ -96,7 +107,14 @@
   </div>
 
 
-
+  <?php
+    echo 'info';
+    var_dump($info);
+    echo 'profile';
+    var_dump($profile);
+    echo 'users';
+    var_dump($users);
+  ?>
 
 
   <!--  Scripts-->
