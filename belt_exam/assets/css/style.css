@@ -12,3 +12,10 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+body{
+  padding: 20px;
+}
+form{
+  padding: 10px;
+}

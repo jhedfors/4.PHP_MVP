@@ -1,6 +1,12 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-$route['default_controller'] = "main";
+$route['default_controller'] = "dashboard";
+$route['register'] = "/dashboard/register";
+$route['travels'] = "/dashboard/travels_page";
+$route['travels/destination/(:num)'] = "dashboard/destination_page/$1";
+
+$route['travels/add'] = "dashboard/add_destination_page";
+$route['logout'] = "dashboard/logout";
 $route['404_override'] = '';
 
 

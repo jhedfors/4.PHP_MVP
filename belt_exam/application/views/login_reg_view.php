@@ -10,7 +10,34 @@
   <link href="/assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="/assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
-  <body>
+<body>
+  <?php
+    echo validation_errors();
+   ?>
+
+   <div class="row">
+     <div class="col s6">
+       <h4>Register</h4>
+       <form class="" action="/register" method="post">
+         <label for="name">Name:</label><input type="text" name="name" value="">
+         <label for="username">Username:</label><input type="text" name="username" value="">
+         <label for="password">Password:</label><input type="password" name="password" value="">
+         <label for="confirm_pw">Confirm PW:</label><input type="password" name="confirm_pw" value="">
+         <input type="submit" value="Register">
+       </form>
+
+     </div>
+     <div class="col s6">
+       <h4>Login</h4>
+
+       <form class="" action="/dashboard/login" method="post">
+         <label for="username">Username:</label><input type="text" name="username" value="">
+         <label for="password">Password:</label><input type="password" name="password" value="">
+         <input type="submit"value="Login">
+       </form>
+     </div>
+
+   </div>
 
 
   <!--  Scripts-->
