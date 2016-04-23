@@ -18,7 +18,7 @@
    <div class="row">
      <div class="col s12">
        <a href="/travels">Home</a>
-       <a href="logout">Logout</a>
+       <a href="/logout">Logout</a>
 
      </div>
    </div>

@@ -12,18 +12,18 @@
 </head>
 <body>
   <?php
-  echo $this->session->userdata('active_id');
-  // var_dump($this->session->all_userdata());
+    $first_name = $this->session->userdata('first_name');
+    $active_id = $this->session->userdata('active_id');
    ?>
 
    <div class="row">
      <div class="col s12">
-       <a href="logout">Logout</a>
+       <a href="/logout">Logout</a>
      </div>
    </div>
    <div class="row">
      <div class="col s12">
-       <h2>Hello, Jerry</h2>
+       <h2>Hello, <?php echo $first_name ?>!</h2>
        <p>
          Your Trip Schedules
        </p>
@@ -37,16 +37,22 @@
            </tr>
          </thead>
          <tbody>
-           <tr>
-             <td><a href="travels/destination/2">Paris France</a></td>
-             <td>May 26 2016</td>
-             <td>May 30 2016</td>
-             <td>Stroll of the Eiffel Tower</td>
-           </tr>
+           <?php
+           foreach ($trips as $trip) {
+             if ($trip['user_id'] == $active_id) {
+            ?>
+               <tr>
+                 <td><a href="travels/destination/2"><?php echo $trip['destination']; ?></a></td>
+                 <td><?php echo date("M d, Y",strtotime($trip['start_date'])); ?></td>
+                 <td><?php echo date("M d, Y",strtotime($trip['end_date'])); ?></td>
+                 <td><?php echo $trip['description']; ?></td>
+               </tr>
+            <?php
+              }
+            }
+             ?>
          </tbody>
        </table>
-
-
        <p>
          Other User's Travel Plans
        </p>
@@ -61,13 +67,21 @@
            </tr>
          </thead>
          <tbody>
+           <?php
+           foreach ($trips as $trip) {
+             if ($trip['user_id'] != $active_id && $trip['user_planner_id'] != $active_id) {
+            ?>
            <tr>
-             <td>Stephen King</td>
-             <td><a href="#">Singapore</a></td>
-             <td>May 26 2016</td>
-             <td>May 30 2016</td>
-             <td><a href="#">Join</a></td>
+             <td><?php echo $trip['name']; ?></td>
+             <td><a href="travels/destination/2"><?php echo $trip['destination']; ?></a></td>
+             <td><?php echo date("M d, Y",strtotime($trip['start_date'])); ?></td>
+             <td><?php echo date("M d, Y",strtotime($trip['end_date'])); ?></td>
+             <td><a href="/join_trip/<?php echo $trip['dest_id']; ?>">Join</a></td>
            </tr>
+           <?php
+             }
+           }
+            ?>
          </tbody>
        </table>
 
@@ -80,10 +94,11 @@
      </div>
    </div>
 
+
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="/assets/js/materialize.js"></script>
   <script src="/assets/js/init.js"></script>
 
-  </body>
+</body>
 </html>

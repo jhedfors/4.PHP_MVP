@@ -19,3 +19,6 @@ body{
 form{
   padding: 10px;
 }
+.errors{
+  color: red;
+}

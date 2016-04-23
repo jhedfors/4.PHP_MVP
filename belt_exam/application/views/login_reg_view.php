@@ -12,13 +12,16 @@
 </head>
 <body>
   <?php
-    echo validation_errors();
+    $this->session->sess_destroy();
    ?>
+   <div class="errors">
+     <?php echo validation_errors() ?>
+   </div>
 
    <div class="row">
      <div class="col s6">
        <h4>Register</h4>
-       <form class="" action="/register" method="post">
+       <form class="" action="/dashboard/register" method="post">
          <label for="name">Name:</label><input type="text" name="name" value="">
          <label for="username">Username:</label><input type="text" name="username" value="">
          <label for="password">Password:</label><input type="password" name="password" value="">

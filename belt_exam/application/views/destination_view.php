@@ -11,24 +11,23 @@
   <link href="/assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-  <?php
-
-   ?>
-
    <div class="row">
      <div class="col s12">
        <a href="/travels">Home</a>
        <a href="/logout">Logout</a>
-
      </div>
    </div>
    <div class="row">
      <div class="col s12">
-       <h2>Transylvania Romania</h2>
+       <?php echo $dest_id ?>
+       <h4>Transylvania Romania</h4>
        <p><label>Planned By:</label>Tristan Lestat</p>
        <p><label>Description:</label>Stay at castle</p>
        <p><label>Travel Date From:</label>Oct 31 2015</p>
        <p><label>Travel Date To:</label>Oct 31 2015</p>
+       <br>
+       <h5>Others joining the trip:</h5>
+
 
    </div>
 
