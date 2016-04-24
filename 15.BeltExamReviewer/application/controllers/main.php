@@ -11,33 +11,29 @@ class Main extends CI_Controller {
 	}
 	public function index()
 	{
-
-		$email = "jeff@hedfors.net";
-		$id = 1;
-		$author = "Douglas Adams";
-		$info = ['Kazu Hedfors', 'Kazu','kazu@hedfors.net','12345678'];
-		$book = ["Dirk Gently's Holistic Detective Agency",4];
-		$review = ['2','1','great book!','5'];
-		$book_id = 1;
-		// var_dump($this->Book_review_model->show_all_users());
-		// var_dump($this->Book_review_model->show_user_by_email($email));
-		// var_dump($this->Book_review_model->show_user_by_id($id));
-		// var_dump($this->Book_review_model->add_author($author));
-		// var_dump($this->Book_review_model->show_all_authors());
-		//  var_dump($this->Book_review_model->add_user($info));
-		//  var_dump($this->Book_review_model->add_book($book));
-	//  var_dump($this->Book_review_model->show_all_books());
- // 	var_dump($this->Book_review_model->add_review($review));
-	// var_dump($this->Book_review_model->show_all_reviews());
-		// var_dump($this->Book_review_model->show_all_books_and_reviews());
-		// var_dump($this->Book_review_model->show_all_reviews_for_book($book_id));
-		// var_dump($this->Book_review_model->show_all_reviews_by_user($id));
-		// die();
-
 		$this->load->view('login_reg_view');
 	}
+	public function books_page(){
+		$this->load->view('books_view');
+	}
+	public function individual_books_page($book_id){
+		$this->load->view('individual_book_view');
+	}
+	public function books_add_page(){
+		$this->load->view('add_book_view');
+	}
+	public function individual_users_page($users_id){
+
+	}
+
+
+
+
 	public function register_form(){
-		
+
+	}
+	public function login_form(){
+
 	}
 }
 	/**

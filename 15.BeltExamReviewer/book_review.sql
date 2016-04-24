@@ -1,3 +1,63 @@
+/*
+/
+	Register
+		name
+        alias
+        email
+        password
+        password_conf
+    login
+		email
+        password
+ /books
+	href - add book/review
+    href - logout
+    recent book review (latest 3)
+		title
+        review_id
+        star_rating
+        reviewer first name
+        reviewer_id
+        review
+        review created_at
+	other review (the rest)
+		title
+        review_id
+/books/add
+	books.title
+    author.name
+		author.id
+	reviews.review
+    reviews.star_rating
+/books/#id
+	books.title
+    author.name
+    reviews:
+		title
+		(review_id)
+		star_rating
+		reviewer first name
+		(reviewer_id)
+		review
+		review created_at
+	add a review:
+		(user.id)
+        (books.id)
+		reviews.review
+        reviews.star_rating
+/users/#id
+	users.alias
+    users.name
+    users.email
+    [count of reviews by id]
+    reviews posted by user
+		books.title
+
+*/
+
+
+
+
 SELECT 
     *
 FROM
