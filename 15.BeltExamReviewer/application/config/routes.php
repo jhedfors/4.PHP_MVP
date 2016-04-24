@@ -1,6 +1,14 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 $route['default_controller'] = "main";
+$route['register'] = "/main/register_form";
+$route['login'] = "/main/login_form";
+$route['logout'] = "/main/logout";
+$route['books/(:num)'] = "main/book_page/$1";
+$route['books'] = "/main/books_page";
+$route['books/add'] = "/main/books_add_page";
+
+$route['users/(:num)'] = "/main/users_page/$1";
 $route['404_override'] = '';
 
 

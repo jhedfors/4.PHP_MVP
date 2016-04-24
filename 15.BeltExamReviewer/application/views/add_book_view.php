@@ -14,12 +14,12 @@
 
    <div class="row">
      <div class="col s6">
-      <a href="#">Home</a>    <a href="#">Logout</a>
-   </div>
+       <a href="/books">Home</a>    <a href="/logout">Logout</a>
+     </div>
    <div class="row">
      <div class="col 12s">
        <h3>Add a New Book Title and a Review</h3>
-       <form class="" action="index.html" method="post">
+       <form class="" action="/main/add_book" method="post">
          <label for="title">Book Title:</label><input type="text" name="title" value="">
          <label>Author</label>
           <div class="author">
@@ -39,6 +39,7 @@
               <option value = 4>4</option>
               <option value = 5>5</option>
             </select>
+            <label>stars</label>
             <input type="submit" value="Add Book and Review">
 
        </form>

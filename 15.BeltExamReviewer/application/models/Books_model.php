@@ -12,6 +12,7 @@ class Books_model extends CI_Model {
 		$query = "INSERT into authors (name, created_at, modified_at) values (?,NOW(),NOW());";
 		$values = [$author];
 		return $this->db->query($query, $values);
+		return $this->db->insert_id();
 	}
 	public function show_all_authors(){
 		$query = "SELECT * FROM authors";
@@ -19,7 +20,9 @@ class Books_model extends CI_Model {
 	}
 	public function add_book($info){
 		$query = "INSERT INTO books (title,author_id,created_at, modified_at) values (?,?,NOW(),NOW())";
-		return $this->db->query($query, $info);
+		$this->db->query($query, $info);
+		return $this->db->insert_id();
+
 	}
 
 	public function show_all_books(){

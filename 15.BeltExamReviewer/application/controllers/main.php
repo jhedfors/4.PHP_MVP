@@ -14,26 +14,103 @@ class Main extends CI_Controller {
 		$this->load->view('login_reg_view');
 	}
 	public function books_page(){
-		$this->load->view('books_view');
+		$data['reviews'] =
+		$this->Reviews_model->show_for_all_books();
+		$data['books'] = $this->Books_model->show_all_books();
+		$this->load->view('books_view',['data'=> $data]);
 	}
-	public function individual_books_page($book_id){
-		$this->load->view('individual_book_view');
+	public function book_page($book_id){
+		$reviews = $this->Reviews_model->show_by_book_id($book_id);
+		$this->load->view('book_view',['reviews'=> $reviews]);
 	}
 	public function books_add_page(){
 		$this->load->view('add_book_view');
 	}
-	public function individual_users_page($users_id){
-
+	public function add_book(){
+		$active_id = $this->session->userdata('actiactive_id');
+		$post = $this->input->post();
+		$book =[];
+		if ($post['new_author']!=null) {
+			$author_id = $this->Books_model->add_author($post['new_author']);
+			$post['author_id'] = $author_id;
+		}
+		$book = [$post['title'],$post['author_id']];
+		$book_id =
+		$this->Books_model->add_book($book);
+		$review = [$book_id,$active_id,$post['review'],$post['star_rating']];
+		$this->Reviews_model->add($review);
+		redirect('books');
 	}
-
-
-
+	public function add_review(){
+		$post = $this->input->post();
+		$info = [$post['book_id'],$post['user_id'],$post['review'],$post['star_rating']];
+		$this->Reviews_model->add($info);
+		redirect('/books/'.$post['book_id'].'');
+	}
+	public function users_page($users_id){
+		$user_info =
+		$this->Reviews_model->show_by_user_id();
+		$this->load->view('users_page',$user_info);
+	}
 
 	public function register_form(){
+		$this->form_validation->set_rules("name", "Name", "trim|required|min_length[3]");
+		$this->form_validation->set_rules("alias", "Alias", "trim|required|min_length[3]");
+		$this->form_validation->set_rules("email", "Alias", "trim|required|min_length[3]|valid_email|callback_check_preexisting_email");
+		$this->form_validation->set_rules("password", "Password", "trim|required|min_length[8]");
+		$this->form_validation->set_rules("confirm_pw", "Confirmed Password", "trim|required|matches[password]");
+		if($this->form_validation->run() === FALSE)		{
+			$this->session->set_userdata('errors_reg',[validation_errors()]);
+			$this->load->view('login_reg_view');
+		}
+		else{
+			$post = $this->input->post();
+			$reg_info =[$post['name'],$post['alias'],$post['email'],do_hash($post['password'])];
+			$this->Users_model->register($reg_info);
+			$this->login_form($post);
+			redirect('travels');
 
+		}
+	}
+	public function check_preexisting_email($post_email){
+		$record = $this->Users_model->show_user_by_email($post_email);
+		if($record){
+			$this->form_validation->set_message('check_preexisting_email', '%s is already in use');
+			return FALSE;
+		}
+		else {
+			return TRUE;
+		}
 	}
 	public function login_form(){
+		$post = $this->input->post();
+		$this->form_validation->set_rules("email", "Email", "trim|required");
+		$this->form_validation->set_rules("password", "Password", "trim|required|callback_check_valid_password");
+		if($this->form_validation->run() === FALSE)		{
+			$this->session->set_userdata('errors_login',[validation_errors()]);
+			$this->load->view('login_reg_view');
+		}
+		else{
+			$record = $this->Users_model->show_user_by_email($post['email']);
 
+			$this->session->set_userdata('active_id' ,$record['id']);
+			$this->session->set_userdata('alias' ,$record['alias']);
+			redirect('books');
+		}
+	}
+	public function callback_check_valid_password($password){
+		$email = $this->input->post('email');
+		$record = $this->Users_model->show_user_by_email($email);
+		if (do_hash($password) != $record['password']) {
+			$this->form_validation->set_message('check_valid_password', '%s or Email not valid');
+			return FALSE;
+		}
+
+	}
+
+	public function logout(){
+		$this->session->sess_destroy();
+		redirect('/');
 	}
 }
 	/**

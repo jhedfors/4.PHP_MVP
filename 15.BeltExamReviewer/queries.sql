@@ -1,4 +1,9 @@
-/*
+insert into email_addresses (email_address, date_created, date_modified)
+values('testing@email.comg',now(),now());
+
+delete from email_addresses where id="3";
+
+select * from email_addresses;/*
 /
 	Register
 		name
@@ -107,9 +112,11 @@ FROM
         LEFT JOIN
     users ON reviews.user_id = users.id;
 
+
 -- show all books and reviews
 
 SELECT 
+	books.id as book_id,
     title,
     authors.name AS author_name,
     star_rating,
