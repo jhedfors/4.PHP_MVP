@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <title>Traveler Dashboard - Travels</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -42,7 +42,7 @@
              if ($trip['user_id'] == $active_id) {
             ?>
                <tr>
-                 <td><a href="travels/destination/2"><?php echo $trip['destination']; ?></a></td>
+                 <td><a href="travels/destination/<?php echo $trip['dest_id']; ?>"><?php echo $trip['destination']; ?></a></td>
                  <td><?php echo date("M d, Y",strtotime($trip['start_date'])); ?></td>
                  <td><?php echo date("M d, Y",strtotime($trip['end_date'])); ?></td>
                  <td><?php echo $trip['description']; ?></td>
@@ -73,7 +73,7 @@
             ?>
            <tr>
              <td><?php echo $trip['name']; ?></td>
-             <td><a href="travels/destination/2"><?php echo $trip['destination']; ?></a></td>
+             <td><a href="travels/destination/<?php echo $trip['dest_id']; ?>"><?php echo $trip['destination']; ?></a></td>
              <td><?php echo date("M d, Y",strtotime($trip['start_date'])); ?></td>
              <td><?php echo date("M d, Y",strtotime($trip['end_date'])); ?></td>
              <td><a href="/join_trip/<?php echo $trip['dest_id']; ?>">Join</a></td>

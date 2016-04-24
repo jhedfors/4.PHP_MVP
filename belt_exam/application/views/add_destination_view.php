@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <title>Traveler Dashboard - Add a Trip</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -25,6 +25,9 @@
    <div class="row">
      <div class="col s12">
        <h4>Add a Trip</h2>
+         <div class="errors">
+           <?php echo validation_errors() ?>
+         </div>
          <form class="" action="/dashboard/add_destination" method="post">
            <label for="destination">Destination:</label><input type="text" name="destination" value="">
            <label for="description">Description</label><input type="text" name="description" value="">
