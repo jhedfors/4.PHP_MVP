@@ -1,4 +1,40 @@
-select * from users;
+/*
+/main
+	login/registration
+		name
+        username
+        password
+        confirm_pw
+        
+/travels
+	displays all trips separated by subscribed/created trip and all other trips
+		destination
+        description
+        start_date
+        end_date
+        planner_name
+        dest_id
+        
+    with link to join
+/travels/add
+	create new trip
+		destination
+        description
+        start_date
+        end_date
+		user_id
+
+/travels/destination/#id
+	displays the individual trip
+    list of those attending
+
+*/
+
+
+SELECT 
+    *
+FROM
+    users;
 select * from schedules;
 select * from destinations;
 
@@ -12,15 +48,6 @@ WHERE username='jhedfors';
 select * from destinations;
 -- show all destinations
 
-set @destination = 'Mountain View, CA';
-set @user_planner_id  =1;
-set @description  ='Tour Google campus';
-set @start_date  ='2016-05-10';
-set @end_date  ='2016-05-11';
-
-
-INSERT INTO destinations (destination, description, start_date, end_date, created_at, modified_at, user_planner_id)
-	VALUES (@destination, @description, @start_date, @end_date, NOW(),NOW(), @user_planner_id);
 
 -- add destination
 
