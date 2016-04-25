@@ -12,33 +12,44 @@
 </head>
 <body>
 
-   <div class="row">
-     <div class="col s6">
-      <a href="#">Home</a>
-      <a href="#">Add book and Review</a>    <a href="#">Logout</a>
-   </div>
+  <div class="row">
+    <div class="col s9">
+      <p>
+
+      </p>
+     </div>
+     <div class="col s3 align-right">
+       <a href="books/add">Add book and Review</a>    <a href="/logout">Logout</a>
+     </div>
+  </div>
    <div class="row">
      <div class="col 12s">
        <p>
-         User Alias: Jessie
+         User Alias: <?php echo $user_info[0]['alias'] ?>
        </p>
        <p>
-         Name: Jessie Jaime
+         Name: <?php echo $user_info[0]['name'] ?>
        </p>
        <p>
-         Email: jessiej@yahoo.com
+         Email: <?php echo $user_info[0]['email'] ?>
        </p>
        <p>
-         Total Reviews: 3
+         Total Reviews: <?php echo count($user_info) ?>
        </p>
        <p>
          Posted Reviews on the following books:
        </p>
        <div class="my_reviewed_books">
-         <a href="#">Divergent 1</a>
-         <a href="#">Divergent 2</a>
-         <a href="#">Divergent 3</a>
-       </div>
+           <?php
+            foreach ($user_info as $review) {
+            ?>
+              <p><a href="/books/<?php echo $review['id'] ?>"><?php echo $review['title'] ?></a></p>
+            <?php
+            }
+            ?>
+
+
+
 
 
      </div>

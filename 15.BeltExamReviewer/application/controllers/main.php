@@ -95,10 +95,11 @@ class Main extends CI_Controller {
 			}
 		}
 	}
-	public function users_page($users_id){
+	public function users_page($user){
+		$active_id = $this->session->userdata('active_id');
 		$user_info =
-		$this->Reviews_model->show_by_user_id();
-		$this->load->view('users_page',$user_info);
+		$this->Reviews_model->show_by_user_id($user);
+		$this->load->view('user_view',['user_info'=>$user_info]);
 	}
 
 	public function register_form(){
