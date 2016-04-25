@@ -37,7 +37,7 @@
             Rating: <?php echo $review['star_rating'] ?> stars
           </p>
           <p>
-            <a href="<?php echo $review['user_id'] ?>"><?php echo $review['user_name'] ?></a> says: <?php echo $review['review'] ?>
+            <a href="/users/<?php echo $review['user_id'] ?>"><?php echo $review['user_name'] ?></a> says: <?php echo $review['review'] ?>
           </p>
           <p>
             Posted on <?php echo $review['reviewed_on'];

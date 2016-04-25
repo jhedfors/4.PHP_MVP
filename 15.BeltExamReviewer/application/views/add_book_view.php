@@ -78,13 +78,7 @@
 
        </form>
      </div>
-
    </div>
-   <?php
-   var_dump($authors);
-    $stuff=$this->Books_model->show_all_books_by_author(4);
-    var_dump($stuff);
-    ?>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

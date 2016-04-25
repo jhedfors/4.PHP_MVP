@@ -28,8 +28,6 @@ class Main extends CI_Controller {
 		$this->load->view('add_book_view',['authors'=>$authors]);
 	}
 	public function add_book(){
-		// var_dump($this->input->post());
-		// die();
 		$this->form_validation->set_rules("title", "Title", "trim|required|is_unique[books.title]");
 		$this->form_validation->set_rules("author", "Author", "trim|callback_check_author_exists");
 		$this->form_validation->set_rules("new_author", "New Author", "trim|is_unique[authors.name]");

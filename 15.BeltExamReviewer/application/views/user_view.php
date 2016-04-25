@@ -19,7 +19,7 @@
       </p>
      </div>
      <div class="col s3 align-right">
-       <a href="books/add">Add book and Review</a>    <a href="/logout">Logout</a>
+       <a href="/books">Home</a>    <a href="books/add">Add book and Review</a>    <a href="/logout">Logout</a>
      </div>
   </div>
    <div class="row">
