@@ -12,46 +12,88 @@
 </head>
 <body>
 
+
    <div class="row">
      <div class="col s6">
+       <p>
+
+       </p>
+     </div>
+     <div class="col s6 align-right">
        <a href="/books">Home</a>    <a href="/logout">Logout</a>
      </div>
    <div class="row">
      <div class="col 12s">
-       <h3>Add a New Book Title and a Review</h3>
+       <h5>Add a New Book Title and a Review</h5>
+       <?php
+           if($this->session->userdata('errors')){
+             foreach ($this->session->userdata('errors') as $errors) {
+               echo $errors;
+              }
+            }      $this->session->unset_userdata('errors');
+
+       ?>
        <form class="" action="/main/add_book" method="post">
          <label for="title">Book Title:</label><input type="text" name="title" value="">
          <label>Author</label>
           <div class="author">
             <label for="author">Choose from the list:</label>
-            <select class="author" name="">
-              <option value = 'Stephen King'>Stephen King</option>
-              <option value = 'Douglas Adams'>Douglas Adams</option>
-            </select>
+            <select name="author_id">
+              <option value = ""></option>
+              <?php
+                foreach ($authors as $author) {
+                ?>
+                  <option value = "<?php echo $author['id'] ?>"><?php echo $author['name'] ?></option>
+                <?php
+                }
+               ?>
+
+            </select><br>
             <label for="new_author">Or add a new author:</label><input type="text" name="new_author" value="">
           </div>
           <label for="review">Review</label><textarea name="review" ></textarea>
-          <label for="star_rating">Rating</label>
-            <select class="" name="star_rating">
-              <option value = 1>1</option>
-              <option value = 2>2</option>
-              <option value = 3>3</option>
-              <option value = 4>4</option>
-              <option value = 5>5</option>
-            </select>
-            <label>stars</label>
-            <input type="submit" value="Add Book and Review">
+          <div class="row">
+            <div class="col s2">
+              <label for="star_rating">Rating</label><br>
+            </div>
+            <div class="col s2">
+              <select class="input-field " name="star_rating">
+                <option value = 1>1</option>
+                <option value = 2>2</option>
+                <option value = 3>3</option>
+                <option value = 4>4</option>
+                <option value = 5>5</option>
+              </select>
+            </div>
+            <div class="col s2">
+              <label >stars</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col 12s">
+              <input type="hidden" name="name" value="">
+              <input type="submit" value="Add Book and Review">
+            </div>
+          </div>
 
        </form>
      </div>
 
    </div>
-
+   <?php
+   var_dump($authors);
+    $stuff=$this->Books_model->show_all_books_by_author(4);
+    var_dump($stuff);
+    ?>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="/assets/js/materialize.js"></script>
   <script src="/assets/js/init.js"></script>
-
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+  </script>
   </body>
 </html>

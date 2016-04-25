@@ -16,7 +16,10 @@
    ?>
 
    <div class="row">
+     <h3>Welcome!</h3>
+     <?php echo validation_errors() ?>
      <div class="col s6">
+       <h4>Register</h4>
        <form class="" action="/register" method="post">
          <label for="name">Name:</label><input type="text" name="name" value="">
          <label for="alias">Alias:</label><input type="text" name="alias" value="">
@@ -28,6 +31,7 @@
 
      </div>
      <div class="col s6">
+        <h4>Login</h4>
        <form class="" action="/login" method="post">
          <label for="email">Email:</label><input type="text" name="email" value="">
          <label for="password">Password:</label><input type="password" name="password" value="">

@@ -39,7 +39,8 @@
             <a href="/users/<?php echo $review['user_id'] ?>"><?php echo $review['user_name'] ?></a> says: <?php echo $review['review'] ?>
           </p>
           <p>
-            Posted on <?php echo $review['reviewed_on'] ?>
+            Posted on <?php echo $review['reviewed_on'];
+            ?>
           </p>
         <?php
          }
@@ -50,8 +51,6 @@
        <h5>Other Books with Reviews:</h5>
        <div class="other_reviews">
          <?php
-        //  var_dump($data['books']);
-        //  die();
         $books = $data['books'];
          for ($i=0; $i < count($books) ; $i++) {
            $book = $books[$i];
@@ -65,11 +64,6 @@
 
      </div>
    </div>
-   <?php
-     var_dump($this->session->all_userdata());
-     var_dump($reviews);
-
-    ?>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

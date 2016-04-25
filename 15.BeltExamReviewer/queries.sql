@@ -132,8 +132,7 @@ FROM
     users ON reviews.user_id = users.id
         LEFT JOIN
     authors ON authors.id = books.author_id
-WHERE
-    books.id = '1';
+-- WHERE    books.id = '1';
 
 -- show all reviews by book id
 

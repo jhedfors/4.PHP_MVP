@@ -24,28 +24,76 @@ class Main extends CI_Controller {
 		$this->load->view('book_view',['reviews'=> $reviews]);
 	}
 	public function books_add_page(){
-		$this->load->view('add_book_view');
+		$authors = $this->Books_model->show_all_authors();
+		$this->load->view('add_book_view',['authors'=>$authors]);
 	}
 	public function add_book(){
-		$active_id = $this->session->userdata('actiactive_id');
-		$post = $this->input->post();
-		$book =[];
-		if ($post['new_author']!=null) {
-			$author_id = $this->Books_model->add_author($post['new_author']);
-			$post['author_id'] = $author_id;
+		// var_dump($this->input->post());
+		// die();
+		$this->form_validation->set_rules("title", "Title", "trim|required|is_unique[books.title]");
+		$this->form_validation->set_rules("author", "Author", "trim|callback_check_author_exists");
+		$this->form_validation->set_rules("new_author", "New Author", "trim|is_unique[authors.name]");
+		$this->form_validation->set_rules("review", "Review", "trim|required");
+		$this->form_validation->set_rules("star_rating", "Star Rating", "trim|required");
+		if($this->form_validation->run() === FALSE)		{
+			$this->session->set_userdata('errors',[validation_errors()]);
+			redirect('books/add');
 		}
-		$book = [$post['title'],$post['author_id']];
-		$book_id =
-		$this->Books_model->add_book($book);
-		$review = [$book_id,$active_id,$post['review'],$post['star_rating']];
-		$this->Reviews_model->add($review);
-		redirect('books');
+		else {
+			$active_id = $this->session->userdata('active_id');
+			$post = $this->input->post();
+			$book =[];
+			if ($post['new_author']!=null) {
+				$author_id = $this->Books_model->add_author($post['new_author']);
+				$post['author_id'] = $author_id;
+			}
+
+				$book = [$post['title'],$post['author_id']];
+				$book_id =
+				$this->Books_model->add_book($book);
+				$review = ['book_id' => $book_id, 'user_id'=> $active_id,'review'=>$post['review'],'star_rating'=>$post['star_rating']];
+
+				$this->Reviews_model->add($review);
+				redirect('books');
+			}
 	}
+	public function check_author_exists($str){
+
+		$new_author = $this->input->post('new_author');
+		$selected_author = $this->input->post('author_id');
+
+		if ($selected_author == NULL && $new_author == NULL) {
+			$this->form_validation->set_message('check_author_exists', 'Select or enter Author name');
+			return FALSE;
+		}
+
+	}
+
 	public function add_review(){
 		$post = $this->input->post();
 		$info = [$post['book_id'],$post['user_id'],$post['review'],$post['star_rating']];
 		$this->Reviews_model->add($info);
 		redirect('/books/'.$post['book_id'].'');
+	}
+	public function delete_review($review_id,$book_id,$author_id){
+		$this->Reviews_model->delete($review_id);
+		$other_reviews = $this->Reviews_model->show_by_book_id($book_id);
+		if ($other_reviews[0]['review_id']!=null) {
+			redirect('/books/'.$book_id.'');
+		}
+		else{
+			$this->Books_model->delete($book_id);
+			$other_books = $this->Books_model->show_all_books_by_author($author_id);
+
+			if($other_books!=null) {
+				redirect('/books');
+				exit;
+			}
+			else {
+				$this->Books_model->delete_author($author_id);
+				redirect('/books');
+			}
+		}
 	}
 	public function users_page($users_id){
 		$user_info =

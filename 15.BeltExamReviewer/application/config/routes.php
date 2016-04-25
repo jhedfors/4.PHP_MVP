@@ -5,10 +5,10 @@ $route['register'] = "/main/register_form";
 $route['login'] = "/main/login_form";
 $route['logout'] = "/main/logout";
 $route['books/(:num)'] = "main/book_page/$1";
-$route['books'] = "/main/books_page";
 $route['books/add'] = "/main/books_add_page";
-
+$route['books'] = "/main/books_page";
 $route['users/(:num)'] = "/main/users_page/$1";
+$route['delete/(:num)/(:num)/(:num)'] = "main/delete_review/$1/$2/$3";
 $route['404_override'] = '';
 
 

@@ -40,7 +40,12 @@
             <a href="<?php echo $review['user_id'] ?>"><?php echo $review['user_name'] ?></a> says: <?php echo $review['review'] ?>
           </p>
           <p>
-            Posted on <?php echo $review['reviewed_on'] ?>
+            Posted on <?php echo $review['reviewed_on'];
+            if ($review['user_id'] == $this->session->userdata('active_id')){
+              echo "<a href ='/delete/".$review['review_id']."/".$review['book_id']."/".$review['author_id']."'>Delete this review</a>";
+            }
+
+             ?>
           </p>
         <?php
        }
@@ -73,15 +78,9 @@
            <input type="submit" value="Submit">
          </div>
 
-
        </form>
      </div>
    </div>
-   <?php
-     var_dump($this->session->all_userdata());
-     var_dump($reviews);
-
-    ?>
 
 
   <!--  Scripts-->

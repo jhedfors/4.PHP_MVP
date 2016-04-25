@@ -16,7 +16,7 @@ class Reviews_model extends CI_Model {
   public function show_by_book_id($id){
 
     $query =
-			"SELECT books.id as book_id, title, authors.name AS author_name, star_rating, users.id AS user_id, users.name AS user_name, review,
+			"SELECT books.id as book_id, title, authors.name AS author_name,authors.id as author_id, star_rating, users.id AS user_id, users.name AS user_name, reviews.id as review_id, review,
 	    reviews.created_at AS reviewed_on
 			FROM books
 			LEFT JOIN reviews ON reviews.book_id = books.id
@@ -31,7 +31,7 @@ class Reviews_model extends CI_Model {
 	public function show_for_all_books(){
 		$query =
 			"SELECT
-	    books.id as book_id,title, star_rating, users.id
+	    books.id as book_id,title, reviews.id as review_id, star_rating, users.id
 			as user_id, users.name as user_name, review, reviews.created_at as reviewed_on FROM books
 			LEFT JOIN
 	    reviews ON reviews.book_id = books.id
@@ -48,6 +48,10 @@ class Reviews_model extends CI_Model {
 		LEFT JOIN reviews ON users.id = reviews.user_id         LEFT JOIN books ON reviews.book_id = books.id
 		LEFT JOIN authors on authors.id = books.author_id     WHERE user_id = $user_id";
 		return $this->db->query($query)->result_array();
+	}
+	public function delete($id){
+		$query = "DELETE FROM reviews WHERE id=$id";
+		$this->db->query($query);
 	}
 
 }
