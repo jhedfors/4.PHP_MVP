@@ -17,7 +17,7 @@
      <div class="col s6">
       </div>
       <div class="col s6">
-        <a href="/books">Home</a>    <a href="/logout">Logout</a>
+          <a href="/books">Home</a>    <a href="/logout">Logout</a>
       </div>
    </div>
    <div class="row">

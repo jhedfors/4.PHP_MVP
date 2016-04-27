@@ -1,144 +1,144 @@
-/*
-/
-	Register
-		name
-        alias
-        email
-        password
-        password_conf
-    login
-		email
-        password
- /books
-	href - add book/review
-    href - logout
-    recent book review (latest 3)
-		title
-        review_id
-        star_rating
-        reviewer first name
-        reviewer_id
-        review
-        review created_at
-	other review (the rest)
-		title
-        review_id
-/books/add
-	books.title
-    author.name
-		author.id
-	reviews.review
-    reviews.star_rating
-/books/#id
-	books.title
-    author.name
-    reviews:
-		title
-		(review_id)
-		star_rating
-		reviewer first name
-		(reviewer_id)
-		review
-		review created_at
-	add a review:
-		(user.id)
-        (books.id)
-		reviews.review
-        reviews.star_rating
-/users/#id
-	users.alias
-    users.name
-    users.email
-    [count of reviews by id]
-    reviews posted by user
-		books.title
+-- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: test_db
+-- ------------------------------------------------------
+-- Server version	5.5.41-log
 
-*/
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+--
+-- Table structure for table `authors`
+--
 
+DROP TABLE IF EXISTS `authors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `authors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=armscii8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `authors`
+--
 
-SELECT 
-    *
-FROM
-    users;
-    
+LOCK TABLES `authors` WRITE;
+/*!40000 ALTER TABLE `authors` DISABLE KEYS */;
+INSERT INTO `authors` VALUES (1,'Stephen King','2016-04-21 18:54:36','2016-04-21 18:54:36'),(4,'Douglas Adams','2016-04-21 22:18:15','2016-04-21 22:18:15');
+/*!40000 ALTER TABLE `authors` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- show all users
-SELECT 
-    *
-FROM
-    users
-WHERE
-    email = 'jeff@hedfors.net';
--- show_email_by_email
-SELECT 
-    *
-FROM
-    users
-WHERE
-    id = 1;
--- show_users by id
-INSERT into authors (name, created_at, modified_at) values ('Stephen King Jr',NOW(),NOW());
--- add author
+--
+-- Table structure for table `books`
+--
 
+DROP TABLE IF EXISTS `books`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `books` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL,
+  `author_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_books_authors_idx` (`author_id`),
+  CONSTRAINT `fk_books_authors` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-insert into users (name, alias, email, password,created_at, modified_at) values('Jeff Hedfors','Jeff','jeff@hedfors.net','12345678',NOW(),NOW());
--- insert new users
-SELECT * FROM authors;
--- show all authors
-INSERT into authors (name, created_at, modified_at) values ('Stephen King',NOW(),NOW());
--- add author
-INSERT INTO books (title,author_id,created_at, modified_at) values ('Shawshank Redemption',1,NOW(),NOW());
--- add book
-SELECT * from books;
--- show all books
-INSERT INTO reviews (book_id, user_id, review, star_rating, created_at, modified_at) values(1,1,'awesome book',5, NOW(),NOW());
--- add review
-SELECT * FROM reviews;
--- show all reviews
+--
+-- Dumping data for table `books`
+--
 
-SELECT 
-    books.id as book_id,title, star_rating, users.id as user_id, users.name as user_name, review, reviews.created_at as reviewed_on
-FROM
-    books
-        LEFT JOIN
-    reviews ON reviews.book_id = books.id
-        LEFT JOIN
-    users ON reviews.user_id = users.id;
+LOCK TABLES `books` WRITE;
+/*!40000 ALTER TABLE `books` DISABLE KEYS */;
+INSERT INTO `books` VALUES (1,'Shawshank Redemption','2016-04-21 19:00:28','2016-04-21 19:00:28',1),(2,'Dirk Gently\'s Holistic Detective Agency','2016-04-21 22:37:06','2016-04-21 22:37:06',4),(10,'Hitchhikers Guide to the Galaxy','2016-04-24 17:47:31','2016-04-24 17:47:31',4);
+/*!40000 ALTER TABLE `books` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- show all books and reviews
+--
+-- Table structure for table `reviews`
+--
 
-SELECT 
-    title,
-    authors.name AS author_name,
-    star_rating,
-    users.id AS user_id,
-    users.name AS user_name,
-    review,
-    reviews.created_at AS reviewed_on
-FROM
-    books
-        LEFT JOIN
-    reviews ON reviews.book_id = books.id
-        LEFT JOIN
-    users ON reviews.user_id = users.id
-        LEFT JOIN
-    authors ON authors.id = books.author_id
-WHERE
-    books.id = '1';
+DROP TABLE IF EXISTS `reviews`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reviews` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `review` varchar(500) DEFAULT NULL,
+  `star_rating` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `book_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_reviews_users1_idx` (`user_id`),
+  KEY `fk_reviews_books1_idx` (`book_id`),
+  CONSTRAINT `fk_reviews_books1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_reviews_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- show all reviews by book id
+--
+-- Dumping data for table `reviews`
+--
 
-SELECT 
-    users.id as user_id, alias, users.name, email, title, books.id
-FROM
-    users	
-        LEFT JOIN
-    reviews ON users.id = reviews.user_id
-        LEFT JOIN
-    books ON reviews.book_id = books.id
-		LEFT JOIN
-	authors on authors.id = books.author_id
-    WHERE user_id = 1;
-    
+LOCK TABLES `reviews` WRITE;
+/*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
+INSERT INTO `reviews` VALUES (1,'awesome book',5,'2016-04-21 19:05:19','2016-04-21 19:05:19',1,1),(2,'great book!',5,'2016-04-21 22:45:34','2016-04-21 22:45:34',1,2),(8,'slartibartfast',4,'2016-04-24 15:10:53','2016-04-24 15:10:53',4,2),(9,'zaphod beeblebrox',5,'2016-04-24 15:11:13','2016-04-24 15:11:13',4,2),(13,'awesome book',5,'2016-04-24 17:43:36','2016-04-24 17:43:36',1,1),(14,'My favorite!',5,'2016-04-24 17:47:31','2016-04-24 17:47:31',4,10),(51,'lajsldkjlasjdf',1,'2016-04-25 07:35:29','2016-04-25 07:35:29',2,2);
+/*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `alias` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Jeff Hedfors','Jeff','jeff@hedfors.net','a642a77abd7d4f51bf9226ceaf891fcbb5b299b8','2016-04-21 18:41:04','2016-04-21 18:41:04'),(2,'Kazu Hedfors','Kazu','kazu@hedfors.net','a642a77abd7d4f51bf9226ceaf891fcbb5b299b8','2016-04-21 22:31:43','2016-04-21 22:31:43'),(4,'Jayden Hedfors','Jayden','jayden@hedfors.net','a642a77abd7d4f51bf9226ceaf891fcbb5b299b8','2016-04-24 12:39:56','2016-04-24 12:39:56');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2016-04-25 12:36:58

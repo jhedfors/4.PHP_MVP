@@ -13,17 +13,17 @@ class Main extends CI_Controller {
 	{
 		$this->load->view('login_reg_view');
 	}
-	public function books_page(){
+	public function books_view(){
 		$data['reviews'] =
 		$this->Reviews_model->show_for_all_books();
 		$data['books'] = $this->Books_model->show_all_books();
 		$this->load->view('books_view',['data'=> $data]);
 	}
-	public function book_page($book_id){
+	public function book_view($book_id){
 		$reviews = $this->Reviews_model->show_by_book_id($book_id);
 		$this->load->view('book_view',['reviews'=> $reviews]);
 	}
-	public function books_add_page(){
+	public function add_book_view(){
 		$authors = $this->Books_model->show_all_authors();
 		$this->load->view('add_book_view',['authors'=>$authors]);
 	}
@@ -93,7 +93,7 @@ class Main extends CI_Controller {
 			}
 		}
 	}
-	public function users_page($user){
+	public function user_view($user){
 		$active_id = $this->session->userdata('active_id');
 		$user_info =
 		$this->Reviews_model->show_by_user_id($user);

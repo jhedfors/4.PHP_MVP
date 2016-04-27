@@ -34,6 +34,8 @@ class Books_model extends CI_Model {
 		$values = [$id];
 		return $this->db->query($query,$values)->result_array();
 	}
+
+
 	public function delete($id){
 		$query = "DELETE FROM books WHERE id=$id";
 		$this->db->query($query);
