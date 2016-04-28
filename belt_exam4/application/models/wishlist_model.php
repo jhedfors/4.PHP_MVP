@@ -60,17 +60,17 @@ class Wishlist_model extends CI_Model {
 			(SELECT items.id from items
 			LEFT JOIN users ON users.id = items.user_id
 			LEFT JOIN wishlist on wishlist.item_id = items.id
-			WHERE wishlist.user_id = ?);";
-		$values = [$active_id];
-		return $this->db->query($query,$active_id)->result_array();
+			WHERE wishlist.user_id = ? OR items.user_id = ?); ";
+			$values = [$active_id, $active_id];
+		return $this->db->query($query,$values)->result_array();
 	}
 	public function show_on_list($active_id){
 		$query =
 			"SELECT items.id as item_id, users.first_name as first_name, description, items.created_at as date_added from items
 			LEFT JOIN users ON users.id = items.user_id
 			LEFT JOIN wishlist on wishlist.item_id = items.id
-			WHERE wishlist.user_id = ?";
-			$values = [$active_id];
+			WHERE wishlist.user_id = ? OR items.user_id = ?";
+			$values = [$active_id, $active_id];
 		return $this->db->query($query,$values)->result_array();
 	}
 	public function add_to_list($active_id,$item_id){
