@@ -29,11 +29,11 @@ LEFT JOIN wishlist on wishlist.item_id = items.id
 WHERE wishlist.user_id = 1);
 
 
--- in wishlist	
+-- in wishlist	incl items added
 SELECT items.id as item_id, users.first_name as first_name, description, items.created_at as date_added from items
 LEFT JOIN users ON users.id = items.user_id
 LEFT JOIN wishlist on wishlist.item_id = items.id
-WHERE wishlist.user_id = 1;
+WHERE wishlist.user_id = 2 OR items.user_id = 2;
 
 --  not in  wishlist	
 SELECT items.id as item_id, users.first_name as first_name, description, items.created_at as date_added from items
@@ -43,7 +43,23 @@ WHERE NOT items.id in
 (SELECT items.id from items
 LEFT JOIN users ON users.id = items.user_id
 LEFT JOIN wishlist on wishlist.item_id = items.id
-WHERE wishlist.user_id = 1);
+WHERE wishlist.user_id = 2 OR items.user_id = 2); 
+
+-- in wishlist	incl items added
+SELECT items.id as item_id, users.id as user_id, users.first_name as first_name, description, items.created_at as date_added from items
+LEFT JOIN users ON users.id = items.user_id
+LEFT JOIN wishlist on wishlist.item_id = items.id
+WHERE wishlist.user_id = 1 OR items.user_id = 1;
+
+--  not in  wishlist	
+SELECT items.id as item_id, users.id as user_id, users.first_name as first_name, description, items.created_at as date_added from items
+LEFT JOIN users ON users.id = items.user_id
+LEFT JOIN wishlist on wishlist.item_id = items.id
+WHERE NOT items.id in
+(SELECT items.id from items
+LEFT JOIN users ON users.id = items.user_id
+LEFT JOIN wishlist on wishlist.item_id = items.id
+WHERE wishlist.user_id = 1 OR items.user_id = 1); 
 
 
 
@@ -51,13 +67,12 @@ WHERE wishlist.user_id = 1);
 
 select * from wishlist;
 
-select users.first_name as first_name, items.description as item_description from wishlist
-LEFT JOIN users on users.id = wishlist.user_id
-LEFT JOIN items on items.id = wishlist.item_id
-WHERE item_id = 2;
+DELETE FROM wishlist WHERE item_id= 16;
 
+select * from items;
 
-SELECT * from items;
+DELETE FROM items WHERE item_id= 16;
+
 
  -- subscribers
 SELECT users.first_name as first_name, items.description as item_description from wishlist

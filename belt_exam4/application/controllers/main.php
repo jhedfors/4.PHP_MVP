@@ -106,6 +106,10 @@ class Main extends CI_Controller {
 		}
 
 	}
+	public function delete_item($id){
+		$this->wishlist_model->delete_item($id);
+		redirect('/dashboard');
+	}
 	public function add_view(){
 		$this->load->view('add_view');
 	}

@@ -51,6 +51,15 @@ class Wishlist_model extends CI_Model {
 	 	$values = [$active_id,$post['description']];
 		$this->db->query($query,$values);
 	}
+	public function delete_item($id){
+		$query1 =
+			 "DELETE FROM wishlist WHERE item_id=?;";
+	 $query2 =
+				"DELETE FROM items WHERE id=?";
+		$values = [$id];
+		$this->db->query($query1,$values);
+		$this->db->query($query2,$values);
+	}
 	public function show_not_on_list($active_id){
 		$query =
 			"SELECT items.id as item_id, users.id as user_id, users.first_name as first_name, description, items.created_at as date_added from items
@@ -66,7 +75,7 @@ class Wishlist_model extends CI_Model {
 	}
 	public function show_on_list($active_id){
 		$query =
-			"SELECT items.id as item_id, users.id as user_id, users.first_name as first_name, description, items.created_at as date_added from items
+			"SELECT DISTINCT items.id as item_id, users.id as user_id, users.first_name as first_name, description, items.created_at as date_added from items
 			LEFT JOIN users ON users.id = items.user_id
 			LEFT JOIN wishlist on wishlist.item_id = items.id
 			WHERE wishlist.user_id = ? OR items.user_id = ?";

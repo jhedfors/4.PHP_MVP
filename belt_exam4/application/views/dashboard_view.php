@@ -55,7 +55,7 @@
                  echo "<td>".$on_list['first_name']."</td>";
                  echo "<td>".$on_list['date_added']."</td>";
                  if ($on_list['user_id'] == $active_id) {
-                    echo "<td><a href='/remove_from_list/".$on_list['item_id']."'>Delete</a></td>";
+                    echo "<td><a href='/main/delete_item/".$on_list['item_id']."'>Delete</a></td>";
                  }
                  else {
                      echo "<td><a href='/remove_from_list/".$on_list['item_id']."'>Remove from List</a></td>";
