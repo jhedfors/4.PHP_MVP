@@ -53,7 +53,7 @@ class Wishlist_model extends CI_Model {
 	}
 	public function show_not_on_list($active_id){
 		$query =
-			"SELECT items.id as item_id, users.first_name as first_name, description, items.created_at as date_added from items
+			"SELECT items.id as item_id, users.id as user_id, users.first_name as first_name, description, items.created_at as date_added from items
 			LEFT JOIN users ON users.id = items.user_id
 			LEFT JOIN wishlist on wishlist.item_id = items.id
 			WHERE NOT items.id in
@@ -66,7 +66,7 @@ class Wishlist_model extends CI_Model {
 	}
 	public function show_on_list($active_id){
 		$query =
-			"SELECT items.id as item_id, users.first_name as first_name, description, items.created_at as date_added from items
+			"SELECT items.id as item_id, users.id as user_id, users.first_name as first_name, description, items.created_at as date_added from items
 			LEFT JOIN users ON users.id = items.user_id
 			LEFT JOIN wishlist on wishlist.item_id = items.id
 			WHERE wishlist.user_id = ? OR items.user_id = ?";

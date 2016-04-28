@@ -54,7 +54,13 @@
                  echo "<td><a href='/wish_items/".$on_list['item_id']."'>".$on_list['description']."</a></td>";
                  echo "<td>".$on_list['first_name']."</td>";
                  echo "<td>".$on_list['date_added']."</td>";
-                 echo "<td><a href='/remove_from_list/".$on_list['item_id']."'>Remove from my wishlist</a></td>";
+                 if ($on_list['user_id'] == $active_id) {
+                    echo "<td><a href='/remove_from_list/".$on_list['item_id']."'>Delete</a></td>";
+                 }
+                 else {
+                     echo "<td><a href='/remove_from_list/".$on_list['item_id']."'>Remove from List</a></td>";
+                 }
+
                  echo "</tr>";
                  // var_dump($not_on_list);
 
