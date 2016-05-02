@@ -10,7 +10,7 @@ class Main_model extends CI_Model {
 		$query = "INSERT INTO users (name, alias, email, password, dob, created_at, modified_at) VALUES(?,?,?,?,?,NOW(),NOW());
 ";
 		$values =
-			 ["{$post['name']}","{$post['alias']}","{$post['email']}",$password,"{$post['dob']}"];
+			 ["{$post['name']}","{$post['alias']}","{$post['email_pk']}",$password,"{$post['dob']}"];
 		$this->db->query($query, $values);
 		return true;
 	}
@@ -28,7 +28,12 @@ class Main_model extends CI_Model {
 
 		return $first_name;
 	}
-
+	public function show_user($index,$value){
+		$query =
+			"SELECT * FROM users WHERE ".$index." = ?";
+		$values = [$value];
+		return $this->db->query($query,$values)->row_array();
+	}
 	public function show_by_id($id){
 		$query =
 			"SELECT alias, name, email FROM users WHERE id = ?";
@@ -36,10 +41,7 @@ class Main_model extends CI_Model {
 		return $this->db->query($query,$values)->row_array();
 	}
 	public function show_by_email($email){
-		$query =
-			"SELECT * FROM users WHERE email = ?";
-		$values = [$email];
-		return $this->db->query($query,$values)->row_array();
+		return $this->show_user('email',$email);
 	}
 
 	public function show_friends(){
@@ -85,8 +87,4 @@ class Main_model extends CI_Model {
 		$this->db->query($query,$values);
 		$this->db->query($query,$values2);
 	}
-
-
-
-
 }

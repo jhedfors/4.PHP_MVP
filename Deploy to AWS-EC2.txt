@@ -1,0 +1,60 @@
+Project changes:
+Config.php
+  $config['base_url'] = "http://".$_SERVER['HTTP_HOST'];
+  $config['index_page'] = 'index.php';
+
+database.php
+    127.0.0.1
+    password used when installing lamp-server below
+
+EC2
+Launch instance
+UBUNTU server
+free tier
+5. tag instance (name)
+6. security group add SSH,HTTP,MySQL-Aurora(3306)anywhere
+keypair
+view instances
+right-click->connect for instructions
+  apt-get update
+  apt-get install lamp-server^
+  apt-get install git
+  go to /var/www/html
+    sudo clone [git-path]
+  sudo vim /etc/mysql/my.cnf
+  [i] for EDIT
+  add # in front of 'bind-address'
+  esc + :wq
+  sudo service mysql restart
+  msyql -u root -p
+  [enter password]
+  CREATE DATABASE IF NOT EXISTS [database];
+  GRANT ALL ON *.* TO root@'%' INDENTIFIED BY [password];//grant access
+  exit;
+
+  MySQL workbench:
+    add new connection with ip of website port 3306 + password
+    test connection
+    in original database - select schema transfer wizard
+
+  sudo vim /etc/apache2/sites-enabled/000-default.confirm_pw
+    DocumentRoot add folder at end of path
+  sudo service apache2 restart
+  sudo a2enmod rewrite
+  sudo service apache2 restart
+  sudo vim /etc/apache2/apache2.conf
+    /root //search
+    <directory /var/www>
+      AllowOverride All
+  sudo service apache2 restart
+
+
+
+
+
+
+
+
+
+
+Project folder:

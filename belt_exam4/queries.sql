@@ -30,10 +30,10 @@ WHERE wishlist.user_id = 1);
 
 
 -- in wishlist	incl items added
-SELECT DISTINCT items.id as item_id, users.first_name as first_name, description, items.created_at as date_added from items
+SELECT items.id as item_id, users.first_name as first_name, description, items.created_at as date_added from items
 LEFT JOIN users ON users.id = items.user_id
 LEFT JOIN wishlist on wishlist.item_id = items.id
-WHERE wishlist.user_id = 2 OR items.user_id = 2 ;
+WHERE wishlist.user_id = 2 OR items.user_id = 2;
 
 --  not in  wishlist	
 SELECT items.id as item_id, users.first_name as first_name, description, items.created_at as date_added from items
@@ -71,7 +71,7 @@ DELETE FROM wishlist WHERE item_id= 16;
 
 select * from items;
 
-DELETE FROM items WHERE items.id= 16;
+DELETE FROM items WHERE item_id= 16;
 
 
  -- subscribers
